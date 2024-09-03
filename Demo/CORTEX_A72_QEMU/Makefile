@@ -21,13 +21,13 @@ CPPFLAGS = -fno-builtin -fno-builtin-function -nostdlib \
 	-I $(RTOS_SOURCE_DIR)/portable/GCC/ARM_AARCH64_QEMU
 
 CFLAGS  = -Wall -fno-builtin -fno-builtin-function -nostdlib \
-	-fmessage-length=0 \
+	-fmessage-length=0 -fno-common \
 	-ffunction-sections \
 	-fdata-sections
 
 LDFLAGS = -nostartfiles -Tfake_rom.lds -fno-builtin -nostdlib \
-	-Xlinker --gc-sections \
-	-Xlinker --defsym=__stack_size=1000 \
+	-Xlinker --gc-sections -fno-common \
+	-Xlinker --defsym=__stack_size=400 \
 	-Xlinker -Map=$(BUILD_DIR)/RTOSDemo.map
 
 ifeq ($(DEBUG), 1)
