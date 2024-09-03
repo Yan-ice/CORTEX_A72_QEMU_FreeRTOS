@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "console.h": "c",
+        "riscv-virt.h": "c",
+        "my_mem.h": "c",
+        "freertosconfig.h": "c",
+        "stdint.h": "c",
+        "aarch64.h": "c"
+    }
+}
