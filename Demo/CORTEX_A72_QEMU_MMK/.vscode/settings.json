@@ -5,6 +5,9 @@
         "my_mem.h": "c",
         "freertosconfig.h": "c",
         "stdint.h": "c",
-        "aarch64.h": "c"
+        "aarch64.h": "c",
+        "type_traits": "c",
+        "gic_v3.h": "c",
+        "memlayout.h": "c"
     }
 }

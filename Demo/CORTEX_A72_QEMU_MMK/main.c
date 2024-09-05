@@ -29,9 +29,8 @@
 #include <task.h>
 #include <FreeRTOSConfig.h>
 
-#include "console.h"
+#include "my_stdlib.h"
 #include "uart.h"
-#include "riscv-virt.h"
 #include "gic_v3.h"
 
 /* Run a simple demo just prints 'Blink' */
@@ -123,31 +122,14 @@ int main( void )
     gic_v3_initialize();
 
     uartinit();
+    vSendString("uart init success.\n");
 
-     __asm__ volatile ("mrs %0, s3_1_c15_c3_0" : "=r"(ret));
+    __asm__ volatile ("mrs %0, s3_1_c15_c3_0" : "=r"(ret));
     vSendString("gic base CBAR:");
     printHex(ret);
 
-    __asm__ volatile ("mrs %0, CNTV_CVAL_EL0" : "=r"(ret));
-    vSendString("timer cval:");
-    printHex(ret);
-
-    __asm__ volatile ("mrs %0, CNTV_CTL_EL0" : "=r"(ret));
-    vSendString("timer enable:");
-    printHex(ret);
-
-    __asm__ volatile("mrs %0, cntfrq_el0" : "=r"(ret));
-    vSendString("timer frq:");
-    printHex(ret);
-
-    __asm__ volatile ( "MRS %0, VBAR_EL1" : "=r" (ret) );
-    vSendString("VBAR_EL1:");
-    printHex(ret);
-
-    __asm__ volatile ( "MRS %0, SCTLR_EL1" : "=r" (ret) );
-    vSendString("SCTLR_EL1:");
-    printHex(ret);
-
+    print_reg(VBAR_EL1);
+    print_reg(VBAR_EL1);
     print_reg(SCTLR_EL1);
 
     #if defined( DEMO_BLINKY )

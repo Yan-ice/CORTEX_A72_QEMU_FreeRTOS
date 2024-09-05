@@ -1,3 +1,20 @@
+#ifndef PARAM_H_
+#define PARAM_H_
+
+/////////////////////////////
+//aarch64 reg define.
+//used by .S file
+
+#define REGSIZE		8
+#define REGSHIFT	3
+#define LOAD		LDR
+#define STOR		STR
+
+#define PRIM_HART   0
+
+/////////////////////////////
+
+
 #define NPROC        64  // maximum number of processes
 #define NCPU          4  // maximum number of CPUs
 #define NOFILE       16  // open files per process
@@ -11,3 +28,8 @@
 #define NBUF         (MAXOPBLOCKS*3)  // size of disk block cache
 #define FSSIZE       1000  // size of file system in blocks
 #define MAXPATH      128   // maximum file path name
+
+
+
+
+#endif /* PARAM_H_ */

@@ -8,27 +8,32 @@ CC      = $(CROSS)gcc
 OBJCOPY = $(CROSS)objcopy
 ARCH    = $(CROSS)ar
 
+USE_MMK=0
+
 DEBUG=1
 
 # Generate GCC_VERSION in number format
 GCC_VERSION = $(shell $(CC) --version | grep ^$(CC) | sed 's/^.* //g' | awk -F. '{ printf("%d%02d%02d"), $$1, $$2, $$3 }')
 GCC_VERSION_NEED_ZICSR = "110100"
 
-CPPFLAGS = -fno-builtin -fno-builtin-function -nostdlib \
-	-DportasmHANDLE_INTERRUPT=handle_trap \
+CPPFLAGS = \
+	-fno-builtin -fno-builtin-function -nostdlib \
+	-mgeneral-regs-only \
 	-I . -I ../Common/include -I ./libmmk/os/include \
-	-I $(RTOS_SOURCE_DIR)/include \
-	-I $(PORT_SOURCE_DIR)/GCC/ARM_AARCH64_QEMU
+	-I $(RTOS_SOURCE_DIR)/include -I ./my_stdlib/include \
+	-I $(PORT_SOURCE_DIR)/GCC/ARM_AARCH64_QEMU \
+	-D USE_MMK=$(USE_MMK)
 
 CFLAGS  = -Wall -fno-builtin -fno-builtin-function -nostdlib \
-	-fmessage-length=0 -fno-common \
-	-ffunction-sections \
-	-fdata-sections
+	-fmessage-length=0 -fno-common -mgeneral-regs-only \
+	-ffunction-sections -fdata-sections \
+	-D USE_MMK=$(USE_MMK)
 
 LDFLAGS = -nostartfiles -Tfake_rom.lds -fno-builtin -nostdlib \
-	-Xlinker --gc-sections -fno-common \
-	-Xlinker --defsym=__stack_size=400 \
-	-Xlinker -Map=$(BUILD_DIR)/RTOSDemo.map
+	-Xlinker --gc-sections -fno-common -mgeneral-regs-only\
+	-Xlinker --defsym=__stack_size=1000 \
+	-Xlinker -Map=$(BUILD_DIR)/RTOSDemo.map \
+	-D USE_MMK=$(USE_MMK)
 
 ifeq ($(DEBUG), 1)
     CFLAGS += -O0 -Og -ggdb3
@@ -36,12 +41,19 @@ else
     CFLAGS += -O2
 endif
 
+ifeq ($(USE_MMK), 1)
+    MMK_FILE = MMK_aarch64.bin
+else
+    MMK_FILE = fw_jump.elf
+endif
+
 ifeq ($(PICOLIBC), 1)
     CFLAGS += --specs=picolibc.specs -DPICOLIBC_INTEGER_PRINTF_SCANF
    LDFLAGS += --specs=picolibc.specs -DPICOLIBC_INTEGER_PRINTF_SCANF
 endif
 
-SRCS = main.c main_blinky.c riscv-virt.c uart.c spinlock.c console.c gic_v3.c my_mem.c\
+SRCS = main.c main_blinky.c uart.c \
+	gic_v3.c trace_time.c \
 	$(DEMO_SOURCE_DIR)/EventGroupsDemo.c \
 	$(DEMO_SOURCE_DIR)/TaskNotify.c \
 	$(DEMO_SOURCE_DIR)/TimerDemo.c \
@@ -56,7 +68,9 @@ SRCS = main.c main_blinky.c riscv-virt.c uart.c spinlock.c console.c gic_v3.c my
 	$(RTOS_SOURCE_DIR)/timers.c \
 	$(PORT_SOURCE_DIR)/MemMang/heap_4.c \
 	$(PORT_SOURCE_DIR)/GCC/ARM_AARCH64_QEMU/port.c \
-	libmmk/os/src/mmk.c
+	libmmk/os/src/mmk.c \
+	my_stdlib/src/my_mem.c \
+	my_stdlib/src/my_stdio.c \
 
 ASMS = start.S vector.S \
 	$(PORT_SOURCE_DIR)/GCC/ARM_AARCH64_QEMU/portASM.S
@@ -85,13 +99,13 @@ test: $(BUILD_DIR)/RTOSDemo.bin
 	qemu-system-aarch64 -nographic \
 		-machine virt -cpu cortex-a72 \
 		-device loader,file=$(BUILD_DIR)/RTOSDemo.bin,addr=0x40400000 \
-		-kernel MMK_aarch64.bin
+		-kernel $(MMK_FILE)
 
 debug: $(BUILD_DIR)/RTOSDemo.bin
 	qemu-system-aarch64 -nographic \
 		-machine virt -cpu cortex-a72 \
 		-device loader,file=$(BUILD_DIR)/RTOSDemo.bin,addr=0x40400000 \
-		-kernel MMK_aarch64.bin \
+		-kernel $(MMK_FILE) \
 		-s -S
 gdb:
 	gdb-multiarch $(BUILD_DIR)/RTOSDemo.elf \

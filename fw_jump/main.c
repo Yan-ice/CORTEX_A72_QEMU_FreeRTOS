@@ -20,21 +20,15 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * https://www.FreeRTOS.org
- * https://www.github.com/FreeRTOS
+ * https://github.com/FreeRTOS
  *
  */
+ 
+ #include "param.h"
 
-#include <FreeRTOS.h>
-
-#include <string.h>
-
-#include "riscv-virt.h"
-#include "uart.h"
-
-
-void handle_trap(void)
+int main( void )
 {
-	while (1)
-		uartputc_sync( '0' );
-		uartputc_sync( 't' );
+    __asm__ volatile("BR %0" : : "r" (FW_JUMP_ADDR));
+    return 0;
 }
+

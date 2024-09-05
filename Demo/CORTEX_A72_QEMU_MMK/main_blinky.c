@@ -29,10 +29,8 @@
 #include <task.h>
 #include <queue.h>
 
-#include <stdio.h>
-
 #include "aarch64.h"
-#include "console.h"
+#include "my_stdlib.h"
 
 /* Priorities used by the tasks. */
 #define mainQUEUE_RECEIVE_TASK_PRIORITY    ( tskIDLE_PRIORITY + 2 )
@@ -77,9 +75,8 @@ static void prvQueueSendTask( void * pvParameters )
         //         pcTaskGetName( xTaskGetCurrentTaskHandle() ),
         //         ( f ) ? pcMessage1 : pcMessage2 );
         //vSendString( buf );
+        printf("send: %lx\n", ulValueToSend);
 
-        vSendString("send: ");
-        printHex(ulValueToSend);
         f = !f;
         /* Send to the queue - causing the queue receive task to unblock and
          * toggle the LED.  0 is used as the block time so the sending operation
@@ -121,21 +118,32 @@ static void prvQueueReceiveTask( void * pvParameters )
             //          pcTaskGetName( xTaskGetCurrentTaskHandle() ),
             //          ( f ) ? pcMessage1 : pcMessage2 );
             // vSendString( buf );
-            vSendString("receive: ");
-            printHex(ulReceivedValue);
+            printf("receive: %lx\n", ulReceivedValue);
             f = !f;
 
             ulReceivedValue = 0U;
         }
         else
         {
-            vSendString("Unexpected value: ");
-            printHex(ulReceivedValue);
+            printf("unexpected: %lx\n", ulReceivedValue);
             ulReceivedValue = 0U;
         }
     }
 }
 
+/*-----------------------------------------------------------*/
+
+static void prvGetStats(void *pvParameters) {
+    TickType_t xNextWakeTime;
+    xNextWakeTime = xTaskGetTickCount();
+    printf("Stats waiting since %lx.\n", xNextWakeTime);
+    vTaskDelayUntil( &xNextWakeTime, pdMS_TO_TICKS(6000) );
+    printf("Stats wakeup.\n");
+    char pcStatsBuffer[512];
+    vTaskGetRunTimeStats(pcStatsBuffer);
+    
+    vSendString(pcStatsBuffer);
+}
 /*-----------------------------------------------------------*/
 
 int main_blinky( void )
@@ -158,6 +166,8 @@ int main_blinky( void )
                      mainQUEUE_RECEIVE_TASK_PRIORITY, NULL );
         xTaskCreate( prvQueueSendTask, "Tx", configMINIMAL_STACK_SIZE * 2U, NULL,
                      mainQUEUE_SEND_TASK_PRIORITY, NULL );
+        xTaskCreate( prvGetStats, "Stats", configMINIMAL_STACK_SIZE * 5U, NULL,
+                     tskIDLE_PRIORITY+3, NULL );
     }
 
     vSendString( "Start Scheduler\n" );
@@ -166,3 +176,4 @@ int main_blinky( void )
 
     return 0;
 }
+

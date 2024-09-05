@@ -11,7 +11,7 @@ MEMORY
 SECTIONS
 {
 	. = 0x40400000;
-	
+
 	.init :
 	{
 		_text = .;

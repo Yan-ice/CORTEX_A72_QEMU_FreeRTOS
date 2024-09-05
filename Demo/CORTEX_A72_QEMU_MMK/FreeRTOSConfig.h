@@ -27,8 +27,9 @@
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
-#include "riscv-virt.h"
-
+#include "param.h"
+#include "aarch64.h"
+#include "trace_time.h"
 /*-----------------------------------------------------------
  * Application specific definitions.
  *
@@ -52,6 +53,16 @@
 #define configUSE_PICOLIBC_TLS			1
 #endif
 
+#define configUSE_TRACE_FACILITY        1
+#define configGENERATE_RUN_TIME_STATS   1
+
+#define configUSE_STATS_FORMATTING_FUNCTIONS 2
+/* Set configUSE_STATS_FORMATTING_FUNCTIONS to 2 to include the stats formatting
+ * functions but without including stdio.h here. */
+
+#define portGET_RUN_TIME_COUNTER_VALUE r_cntvct_el0
+#define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS() 
+
 #define configUSE_IDLE_HOOK				0
 #define configUSE_PREEMPTION			1
 #define configUSE_TICK_HOOK				1
@@ -61,7 +72,6 @@
 #define configMINIMAL_STACK_SIZE		( ( unsigned short ) 512 )
 #define configTOTAL_HEAP_SIZE			( ( size_t ) 64500 )
 #define configMAX_TASK_NAME_LEN			( 16 )
-#define configUSE_TRACE_FACILITY		0
 #define configUSE_16_BIT_TICKS			0
 #define configIDLE_SHOULD_YIELD			0
 #define configUSE_MUTEXES				1
@@ -71,7 +81,6 @@
 #define configUSE_MALLOC_FAILED_HOOK	1
 #define configUSE_APPLICATION_TASK_TAG	0
 #define configUSE_COUNTING_SEMAPHORES	1
-#define configGENERATE_RUN_TIME_STATS	0
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 1
 
 #define configSUPPORT_DYNAMIC_ALLOCATION	1

@@ -1,5 +1,8 @@
 #ifndef __ASSEMBLER__
 
+#ifndef AARCH64_H_
+#define AARCH64_H_
+
 #include <FreeRTOS.h>
 
 // which core is this?
@@ -119,6 +122,7 @@ w_cntv_tval_el0(uint64_t x)
   asm volatile("msr cntv_tval_el0, %0" : : "r" (x) );
 }
 
+//get the conunter
 static inline uint64_t
 r_cntvct_el0()
 {
@@ -202,5 +206,7 @@ flush_tlb()
   asm volatile("dsb ish");
   isb();
 }
+
+#endif
 
 #endif  /* __ASSEMBLER__ */

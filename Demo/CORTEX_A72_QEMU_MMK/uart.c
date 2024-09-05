@@ -5,7 +5,6 @@
 #include "param.h"
 #include "memlayout.h"
 #include "aarch64.h"
-#include "spinlock.h"
 #include "uart.h"
 
 // the UART control registers are memory-mapped
@@ -36,7 +35,6 @@
 #define WriteReg(reg, v) (*(Reg(reg)) = (v))
 
 // the transmit output buffer.
-struct spinlock uart_tx_lock;
 #define UART_TX_BUF_SIZE 32
 char uart_tx_buf[UART_TX_BUF_SIZE];
 uint64_t uart_tx_w; // write next to uart_tx_buf[uart_tx_w % UART_TX_BUF_SIZE]
@@ -67,10 +65,6 @@ uartinit(void)
   // enable transmit and receive interrupts.
   WriteReg(IMSC, INT_RX_ENABLE | INT_TX_ENABLE);
 
-  printHexISR((uint64_t)&uart_tx_lock);
-
-  initlock(&uart_tx_lock, "uart");
-
 }
 
 // add a character to the output buffer and tell the
@@ -82,7 +76,6 @@ uartinit(void)
 void
 uartputc(int c)
 {
-  acquire(&uart_tx_lock);
 
   // if(panicked){
   //   for(;;)
@@ -93,12 +86,10 @@ uartputc(int c)
     if(uart_tx_w == uart_tx_r + UART_TX_BUF_SIZE){
       // buffer is full.
       // wait for uartstart() to open up space in the buffer.
-      sleep(&uart_tx_r, &uart_tx_lock);
     } else {
       uart_tx_buf[uart_tx_w % UART_TX_BUF_SIZE] = c;
       uart_tx_w += 1;
       uartstart();
-      release(&uart_tx_lock);
       return;
     }
   }
@@ -178,9 +169,7 @@ uartintr(void)
   }
 
   // send buffered characters.
-  acquire(&uart_tx_lock);
   uartstart();
-  release(&uart_tx_lock);
 
   // clear transmit and receive interrupts.
   WriteReg(ICR, INT_RX_ENABLE|INT_TX_ENABLE);

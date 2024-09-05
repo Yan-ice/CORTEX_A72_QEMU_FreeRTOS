@@ -18,7 +18,7 @@
 #include <stdint.h>
 #include "memlayout.h"
 #include "gic_v3.h"
-#include "console.h"
+#include "my_stdlib.h"
 #include "FreeRTOSConfig.h"
 
 /* Initialize GIC Controller */

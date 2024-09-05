@@ -24,7 +24,7 @@
  *
  */
 
-#include "riscv-virt.h"
+#include "param.h"
 #include "mmkdef.h"
 
 	.section .init
@@ -66,6 +66,11 @@ down_el1:
 //////////////////////////////////
 // use MMK API to load memory space
 
+	MOV x0, #USE_MMK
+	MOV x1, 1
+	CMP x0, x1
+	B.NE no_mmk
+	
 	MOV x3, MAP_IDENTICAL
 	MOV x7, NKAPI_ALLOC
 
@@ -104,6 +109,8 @@ down_el1:
 	SUB x2, x2, x1
 	MOV x28, -0x1000
 	BLR x28
+
+no_mmk:
 
 //////////////////////////////////
 // Load data section

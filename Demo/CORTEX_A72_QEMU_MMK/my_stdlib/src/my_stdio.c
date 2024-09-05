@@ -1,5 +1,6 @@
-#include "console.h"
+#include "my_stdio.h"
 #include "uart.h"
+#include "va_list.h"
 
 void vSendString( const char *s )
 {
@@ -74,34 +75,6 @@ void printHex(int num) {
     vSendString(hex);
     vSendString("\n");
 }
-
-
-// typedef char *  va_list;
-#define va_list __builtin_va_list
-
- #ifdef  __cplusplus
- #define _ADDRESSOF(v)   ( &reinterpret_cast<const char &>(v) )
- #else
- #define _ADDRESSOF(v)   ( &(v) )
- #endif
-
-
- #define _INTSIZEOF(n)   ( (sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1) )
-
-
- #define _crt_va_start(ap,v)  ( ap = (va_list)_ADDRESSOF(v) + _INTSIZEOF(v) )
- #define _crt_va_arg(ap,t)    ( *(t *)((ap += _INTSIZEOF(t)) - _INTSIZEOF(t)) )
- #define _crt_va_end(ap)      ( ap = (va_list)0 )
-
-
-//  #define Test_va_start _crt_va_start /* windows stdarg.h */
-//  #define Test_va_arg _crt_va_arg
-//  #define Test_va_end _crt_va_end
-
-
- #define Test_va_start __builtin_va_start /* windows stdarg.h */
- #define Test_va_arg __builtin_va_arg
- #define Test_va_end __builtin_va_end
 
  #define ZEROPAD    1       /* pad with zero */
  #define SIGN   2       /* unsigned/signed long */
@@ -231,9 +204,9 @@ size_t Test_strnlen(const char *s, size_t count)
 
 
 
-
- int Test_vsprintf(char *buf, const char *fmt, va_list args)
- {
+//max_len not used.
+int Test_vsnprintf(char *buf, size_t max_len, const char *fmt, va_list args)
+{
     int len;
     unsigned long num;
     int i, base;
@@ -282,7 +255,7 @@ size_t Test_strnlen(const char *s, size_t count)
         else if (*fmt == '*') {
             ++fmt;
             /* it's the next argument */
-            field_width = Test_va_arg(args, int);
+            field_width = va_arg(args, int);
             if (field_width < 0) {
                 field_width = -field_width;
                 flags |= LEFT;
@@ -298,7 +271,7 @@ size_t Test_strnlen(const char *s, size_t count)
             else if (*fmt == '*') {
                 ++fmt;
                 /* it's the next argument */
-                precision = Test_va_arg(args, int);
+                precision = va_arg(args, int);
             }
             if (precision < 0)
                 precision = 0;
@@ -319,13 +292,13 @@ size_t Test_strnlen(const char *s, size_t count)
             if (!(flags & LEFT))
                 while (--field_width > 0)
                     *str++ = ' ';
-            *str++ = (unsigned char)Test_va_arg(args, int);
+            *str++ = (unsigned char)va_arg(args, int);
             while (--field_width > 0)
                 *str++ = ' ';
             continue;
 
         case 's':
-            s = Test_va_arg(args, char *);
+            s = va_arg(args, char *);
             len = Test_strnlen(s, precision);
 
             if (!(flags & LEFT))
@@ -343,16 +316,16 @@ size_t Test_strnlen(const char *s, size_t count)
                 flags |= ZEROPAD;
             }
             str = Test_number(str,
-                     (unsigned long)Test_va_arg(args, void *), 16,
+                     (unsigned long)va_arg(args, void *), 16,
                      field_width, precision, flags);
             continue;
 
         case 'n':
             if (qualifier == 'l') {
-                long *ip = Test_va_arg(args, long *);
+                long *ip = va_arg(args, long *);
                 *ip = (str - buf);
             } else {
-                int *ip = Test_va_arg(args, int *);
+                int *ip = va_arg(args, int *);
                 *ip = (str - buf);
             }
             continue;
@@ -387,41 +360,59 @@ size_t Test_strnlen(const char *s, size_t count)
             continue;
         }
         if (qualifier == 'l')
-            num = Test_va_arg(args, unsigned long);
+            num = va_arg(args, unsigned long);
         else if (qualifier == 'h') {
-            num = (unsigned short)Test_va_arg(args, int);
+            num = (unsigned short)va_arg(args, int);
             if (flags & SIGN)
                 num = (short)num;
         } else if (flags & SIGN)
-            num = Test_va_arg(args, int);
+            num = va_arg(args, int);
         else
-            num = Test_va_arg(args, unsigned int);
+            num = va_arg(args, unsigned int);
         str = Test_number(str, num, base, field_width, precision, flags);
     }
     *str = '\0';
     return str - buf;
 }
 
-int Test_sprintf(char *buf, const char *fmt, ...)
+int snprintf(char *buf, size_t max_num, const char *fmt, ...)
 {
     //记录fmt对应的地址
     va_list args;
     int val;
     //得到首个%对应的字符地址
-    Test_va_start(args, fmt);
-    val = Test_vsprintf(buf, fmt, args);
-    Test_va_end(args);
+    va_start(args, fmt);
+    val = Test_vsnprintf(buf, max_num, fmt, args);
+    va_end(args);
     return val;
 }
 
-int Test_printf(char *buf, const char *fmt, ...)
+int sprintf(char *buf, const char *fmt, ...)
 {
     //记录fmt对应的地址
     va_list args;
     int val;
     //得到首个%对应的字符地址
-    Test_va_start(args, fmt);
-    val = Test_vsprintf(buf, fmt, args);
-    Test_va_end(args);
+    va_start(args, fmt);
+    val = Test_vsnprintf(buf, 0x7fffffff, fmt, args);
+    va_end(args);
     return val;
 }
+
+
+int printf(const char *__restrict fmt, ...)
+{
+    char buf[0x200];
+    //记录fmt对应的地址
+    va_list args;
+    //得到首个%对应的字符地址
+    va_start(args, fmt);
+    int val = Test_vsnprintf(buf, 0x7fffffff, fmt, args);
+    va_end(args);
+    if(val > 200){
+        vSendString("buffer overflow.\n");;
+    }
+    vSendString(buf);
+    return val;
+}
+
