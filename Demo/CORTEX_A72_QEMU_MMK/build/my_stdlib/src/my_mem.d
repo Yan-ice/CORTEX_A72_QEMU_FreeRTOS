@@ -1,7 +1,10 @@
-build/my_stdlib/src/my_mem.o: my_stdlib/src/my_mem.c \
- my_stdlib/include/my_mem.h \
+/home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o: \
+ my_stdlib/src/my_mem.c my_stdlib/include/my_mem.h \
  /home/yanice/Desktop/FreeRTOS/FreeRTOS/Source/include/FreeRTOS.h \
- FreeRTOSConfig.h param.h aarch64.h trace_time.h \
+ /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/FreeRTOSConfig.h \
+ /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/param.h \
+ /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/aarch64.h \
+ /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/trace_time.h \
  /home/yanice/Desktop/FreeRTOS/FreeRTOS/Source/include/projdefs.h \
  /home/yanice/Desktop/FreeRTOS/FreeRTOS/Source/include/portable.h \
  /home/yanice/Desktop/FreeRTOS/FreeRTOS/Source/include/deprecated_definitions.h \
@@ -13,13 +16,13 @@ my_stdlib/include/my_mem.h:
 
 /home/yanice/Desktop/FreeRTOS/FreeRTOS/Source/include/FreeRTOS.h:
 
-FreeRTOSConfig.h:
+/home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/FreeRTOSConfig.h:
 
-param.h:
+/home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/param.h:
 
-aarch64.h:
+/home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/aarch64.h:
 
-trace_time.h:
+/home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/trace_time.h:
 
 /home/yanice/Desktop/FreeRTOS/FreeRTOS/Source/include/projdefs.h:
 
