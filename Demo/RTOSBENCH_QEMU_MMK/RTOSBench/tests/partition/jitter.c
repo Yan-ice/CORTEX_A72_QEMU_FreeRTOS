@@ -12,10 +12,10 @@
 #endif
 
 #ifndef NB_ITER
-#define NB_ITER 1000
+#define NB_ITER 100
 #endif
 
-#define NB_TASK 0
+#define NB_TASK 50
 
 no_task_retval_t monitor(no_task_argument_t args);
 no_task_retval_t task(no_task_argument_t args);
@@ -74,14 +74,16 @@ no_task_retval_t monitor(no_task_argument_t args)
 
 	for (i = 0; i < NB_ITER; i++)
 	{
+		int set_time_ms = 500;
 		time_t1 = no_time_get();
-		time_t1 = no_add_times(&time_t1, 500000000);
+		time_t1 = no_add_times(&time_t1, set_time_ms);
 
-		no_task_delay(400);
+		no_task_delay(set_time_ms);
 
 		time_t2 = no_time_get();
 		diff = no_time_diff(&time_t1, &time_t2);
-		no_single_result_report("", diff);
+		no_single_result_report("\n[", i);
+		no_single_result_report("]", diff);
 
 		no_task_yield();
 	}

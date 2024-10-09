@@ -161,6 +161,7 @@ static void gicd_set_priority(irq_no irq, uint32_t prio){
 	*REG_GIC_GICD_IPRIORITYR(irq / GIC_GICD_IPRIORITY_PER_REG) = reg;
 }
 
+
 /** Configure IRQ 
     @param[in] irq     IRQ number
     @param[in] config  Configuration value for GICD_ICFGR
@@ -223,4 +224,14 @@ int gic_v3_find_pending_irq(uint64_t *context __attribute__((unused)), irq_no *i
 	rc = IRQ_NOT_FOUND ;
 found:
 	return rc;
+}
+
+
+/** send an SGI
+    @param[in] irq IRQ number
+	@param[in] core_id target core id number
+ */
+int gicd_send_sgi(irq_no irq, int core_id) {
+	*REG_GIC_GICD_SGIR = (irq & 0xF) | ((1<<core_id) << 16);
+	return 0;
 }

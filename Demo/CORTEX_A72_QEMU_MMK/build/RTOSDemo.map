@@ -189,6 +189,7 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
  .data          0x0000000000000000        0x0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
  .bss           0x0000000000000000        0x0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
+ .text.memcmp   0x0000000000000000       0x40 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
  .debug_macro   0x0000000000000000      0x940 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
  .debug_macro   0x0000000000000000       0x10 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
  .debug_macro   0x0000000000000000      0x174 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
@@ -215,7 +216,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x1f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
  .debug_macro   0x0000000000000000       0x12 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
  .debug_macro   0x0000000000000000     0x1071 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
- .eh_frame      0x0000000000000000       0x68 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
+ .eh_frame      0x0000000000000000       0x78 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
  .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
  .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
  .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
@@ -2308,6 +2309,8 @@ Discarded input sections
                 0x0000000000000000       0x14 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
  .text.gic_v3_find_pending_irq
                 0x0000000000000000       0x4c /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
+ .text.gicd_send_sgi
+                0x0000000000000000       0x24 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
  .debug_macro   0x0000000000000000      0x940 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
  .debug_macro   0x0000000000000000       0x10 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
  .debug_macro   0x0000000000000000       0x10 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
@@ -2324,19 +2327,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x1b8 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
  .debug_macro   0x0000000000000000       0x94 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
  .debug_macro   0x0000000000000000      0x1e5 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
- .eh_frame      0x0000000000000000      0x130 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
+ .eh_frame      0x0000000000000000      0x148 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
  .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .group         0x0000000000000000        0xc /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
@@ -2372,9 +2363,7 @@ Discarded input sections
                 0x0000000000000000        0x8 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .debug_macro   0x0000000000000000      0x940 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .debug_macro   0x0000000000000000       0x10 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000       0x76 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .debug_macro   0x0000000000000000       0x94 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000      0x174 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .debug_macro   0x0000000000000000       0x10 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .debug_macro   0x0000000000000000      0x1bb /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .debug_macro   0x0000000000000000      0x17f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
@@ -2387,16 +2376,6 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .debug_macro   0x0000000000000000       0x16 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .debug_macro   0x0000000000000000      0x1b8 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000       0x16 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000       0x3a /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000      0x16d /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000       0x1c /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000      0x182 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000      0x147 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000       0x2e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000       0x1f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000       0x12 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_macro   0x0000000000000000     0x1071 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .eh_frame      0x0000000000000000       0xa8 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .text          0x0000000000000000        0x0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/start.o
  .data          0x0000000000000000        0x0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/start.o
@@ -3092,23 +3071,23 @@ LOAD /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/buil
 OUTPUT(/home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/RTOSDemo.elf elf64-littleaarch64)
 LOAD linker stubs
 
-.debug_info     0x0000000000000000     0xb732
+.debug_info     0x0000000000000000     0xb7f0
  .debug_info    0x0000000000000000      0x2a5 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
  .debug_info    0x00000000000002a5      0x6bb /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
  .debug_info    0x0000000000000960      0x5c4 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main_blinky.o
- .debug_info    0x0000000000000f24      0x25b /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
- .debug_info    0x000000000000117f      0xb77 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
- .debug_info    0x0000000000001cf6      0x2ff /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
- .debug_info    0x0000000000001ff5     0x278a /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
- .debug_info    0x000000000000477f     0x43d5 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
- .debug_info    0x0000000000008b54     0x170a /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
- .debug_info    0x000000000000a25e      0x7e5 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
- .debug_info    0x000000000000aa43      0x4df /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
- .debug_info    0x000000000000af22      0x4fd /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
- .debug_info    0x000000000000b41f      0x289 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_info    0x000000000000b6a8       0x2e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/start.o
- .debug_info    0x000000000000b6d6       0x2e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/vector.o
- .debug_info    0x000000000000b704       0x2e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/portASM.o
+ .debug_info    0x0000000000000f24      0x2e2 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
+ .debug_info    0x0000000000001206      0xb77 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
+ .debug_info    0x0000000000001d7d      0x2ff /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
+ .debug_info    0x000000000000207c     0x278a /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
+ .debug_info    0x0000000000004806     0x43d5 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
+ .debug_info    0x0000000000008bdb     0x170a /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
+ .debug_info    0x000000000000a2e5      0x7e5 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
+ .debug_info    0x000000000000aaca      0x4df /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
+ .debug_info    0x000000000000afa9      0x542 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
+ .debug_info    0x000000000000b4eb      0x27b /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
+ .debug_info    0x000000000000b766       0x2e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/start.o
+ .debug_info    0x000000000000b794       0x2e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/vector.o
+ .debug_info    0x000000000000b7c2       0x2e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/portASM.o
 
 .debug_abbrev   0x0000000000000000     0x185a
  .debug_abbrev  0x0000000000000000      0x10c /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
@@ -3128,22 +3107,22 @@ LOAD linker stubs
  .debug_abbrev  0x0000000000001832       0x14 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/vector.o
  .debug_abbrev  0x0000000000001846       0x14 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/portASM.o
 
-.debug_loc      0x0000000000000000    0x109ed
+.debug_loc      0x0000000000000000    0x10b52
  .debug_loc     0x0000000000000000      0x191 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
  .debug_loc     0x0000000000000191      0x359 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
  .debug_loc     0x00000000000004ea       0xdd /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main_blinky.o
- .debug_loc     0x00000000000005c7      0x3c0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
- .debug_loc     0x0000000000000987     0x1a2d /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
- .debug_loc     0x00000000000023b4      0x19f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
- .debug_loc     0x0000000000002553     0x3ec7 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
- .debug_loc     0x000000000000641a     0x6cde /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
- .debug_loc     0x000000000000d0f8     0x22a6 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
- .debug_loc     0x000000000000f39e      0x9d4 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
- .debug_loc     0x000000000000fd72      0x4d0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
- .debug_loc     0x0000000000010242      0x6e5 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
- .debug_loc     0x0000000000010927       0xc6 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
+ .debug_loc     0x00000000000005c7      0x4e8 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
+ .debug_loc     0x0000000000000aaf     0x1a2d /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
+ .debug_loc     0x00000000000024dc      0x19f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
+ .debug_loc     0x000000000000267b     0x3ec7 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
+ .debug_loc     0x0000000000006542     0x6cde /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
+ .debug_loc     0x000000000000d220     0x22a6 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
+ .debug_loc     0x000000000000f4c6      0x9d4 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
+ .debug_loc     0x000000000000fe9a      0x4d0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
+ .debug_loc     0x000000000001036a      0x722 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
+ .debug_loc     0x0000000000010a8c       0xc6 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
 
-.debug_aranges  0x0000000000000000     0x1020
+.debug_aranges  0x0000000000000000     0x1040
  .debug_aranges
                 0x0000000000000000       0x40 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
  .debug_aranges
@@ -3151,48 +3130,48 @@ LOAD linker stubs
  .debug_aranges
                 0x0000000000000130       0x60 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main_blinky.o
  .debug_aranges
-                0x0000000000000190       0x60 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
+                0x0000000000000190       0x70 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
  .debug_aranges
-                0x00000000000001f0       0xf0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
+                0x0000000000000200       0xf0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
  .debug_aranges
-                0x00000000000002e0       0x70 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
+                0x00000000000002f0       0x70 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
  .debug_aranges
-                0x0000000000000350      0x290 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
+                0x0000000000000360      0x290 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
  .debug_aranges
-                0x00000000000005e0      0x4d0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
+                0x00000000000005f0      0x4d0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
  .debug_aranges
-                0x0000000000000ab0      0x200 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
+                0x0000000000000ac0      0x200 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
  .debug_aranges
-                0x0000000000000cb0       0xc0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
+                0x0000000000000cc0       0xc0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
  .debug_aranges
-                0x0000000000000d70       0xc0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
+                0x0000000000000d80       0xc0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
  .debug_aranges
-                0x0000000000000e30       0xe0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
+                0x0000000000000e40       0xf0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
  .debug_aranges
-                0x0000000000000f10       0x80 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
+                0x0000000000000f30       0x80 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
  .debug_aranges
-                0x0000000000000f90       0x30 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/start.o
+                0x0000000000000fb0       0x30 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/start.o
  .debug_aranges
-                0x0000000000000fc0       0x30 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/vector.o
+                0x0000000000000fe0       0x30 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/vector.o
  .debug_aranges
-                0x0000000000000ff0       0x30 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/portASM.o
+                0x0000000000001010       0x30 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/portASM.o
 
-.debug_ranges   0x0000000000000000     0x1700
+.debug_ranges   0x0000000000000000     0x1720
  .debug_ranges  0x0000000000000000       0x30 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
  .debug_ranges  0x0000000000000030       0xe0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
  .debug_ranges  0x0000000000000110       0x80 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main_blinky.o
- .debug_ranges  0x0000000000000190       0x50 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
- .debug_ranges  0x00000000000001e0      0x140 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
- .debug_ranges  0x0000000000000320       0x60 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
- .debug_ranges  0x0000000000000380      0x480 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
- .debug_ranges  0x0000000000000800      0xa10 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
- .debug_ranges  0x0000000000001210      0x1f0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
- .debug_ranges  0x0000000000001400       0xb0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
- .debug_ranges  0x00000000000014b0      0x110 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
- .debug_ranges  0x00000000000015c0       0xd0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
- .debug_ranges  0x0000000000001690       0x70 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
+ .debug_ranges  0x0000000000000190       0x60 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
+ .debug_ranges  0x00000000000001f0      0x140 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
+ .debug_ranges  0x0000000000000330       0x60 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
+ .debug_ranges  0x0000000000000390      0x480 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
+ .debug_ranges  0x0000000000000810      0xa10 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
+ .debug_ranges  0x0000000000001220      0x1f0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
+ .debug_ranges  0x0000000000001410       0xb0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
+ .debug_ranges  0x00000000000014c0      0x110 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
+ .debug_ranges  0x00000000000015d0       0xe0 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
+ .debug_ranges  0x00000000000016b0       0x70 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
 
-.debug_macro    0x0000000000000000     0x529e
+.debug_macro    0x0000000000000000     0x5212
  .debug_macro   0x0000000000000000      0x1b4 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
  .debug_macro   0x00000000000001b4      0x940 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
  .debug_macro   0x0000000000000af4       0x10 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
@@ -3220,79 +3199,79 @@ LOAD linker stubs
  .debug_macro   0x000000000000193f       0x1f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
  .debug_macro   0x000000000000195e       0x12 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
  .debug_macro   0x0000000000001970     0x1071 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
- .debug_macro   0x00000000000029e1      0x1e4 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
- .debug_macro   0x0000000000002bc5       0x3a /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
- .debug_macro   0x0000000000002bff       0xc3 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
- .debug_macro   0x0000000000002cc2      0x14f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
- .debug_macro   0x0000000000002e11       0x94 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
- .debug_macro   0x0000000000002ea5      0x1e5 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
- .debug_macro   0x000000000000308a      0x1f1 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main_blinky.o
- .debug_macro   0x000000000000327b       0x80 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main_blinky.o
- .debug_macro   0x00000000000032fb      0x19c /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
- .debug_macro   0x0000000000003497      0x1d9 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
- .debug_macro   0x0000000000003670       0x40 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
- .debug_macro   0x00000000000036b0      0x367 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
- .debug_macro   0x0000000000003a17      0x42c /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
- .debug_macro   0x0000000000003e43       0x20 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
- .debug_macro   0x0000000000003e63      0x4b2 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
- .debug_macro   0x0000000000004315       0x16 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
- .debug_macro   0x000000000000432b      0x3b6 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
- .debug_macro   0x00000000000046e1       0x9e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
- .debug_macro   0x000000000000477f      0x42a /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
- .debug_macro   0x0000000000004ba9      0x3c6 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
- .debug_macro   0x0000000000004f6f      0x114 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
- .debug_macro   0x0000000000005083      0x21b /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
+ .debug_macro   0x00000000000029e1      0x1ea /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
+ .debug_macro   0x0000000000002bcb       0x3a /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
+ .debug_macro   0x0000000000002c05       0xc3 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
+ .debug_macro   0x0000000000002cc8      0x14f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
+ .debug_macro   0x0000000000002e17       0x94 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
+ .debug_macro   0x0000000000002eab      0x1e5 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
+ .debug_macro   0x0000000000003090      0x1f1 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main_blinky.o
+ .debug_macro   0x0000000000003281       0x80 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main_blinky.o
+ .debug_macro   0x0000000000003301      0x19c /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
+ .debug_macro   0x000000000000349d      0x1df /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
+ .debug_macro   0x000000000000367c       0x40 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
+ .debug_macro   0x00000000000036bc      0x367 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
+ .debug_macro   0x0000000000003a23      0x42c /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
+ .debug_macro   0x0000000000003e4f       0x20 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
+ .debug_macro   0x0000000000003e6f      0x4b2 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
+ .debug_macro   0x0000000000004321       0x16 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
+ .debug_macro   0x0000000000004337      0x3b6 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
+ .debug_macro   0x00000000000046ed       0x9e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
+ .debug_macro   0x000000000000478b      0x42a /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
+ .debug_macro   0x0000000000004bb5      0x3c6 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
+ .debug_macro   0x0000000000004f7b      0x114 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
+ .debug_macro   0x000000000000508f      0x183 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
 
-.debug_line     0x0000000000000000     0xc0e5
+.debug_line     0x0000000000000000     0xbff5
  .debug_line    0x0000000000000000      0x482 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
  .debug_line    0x0000000000000482      0x682 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
  .debug_line    0x0000000000000b04      0x4d7 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main_blinky.o
- .debug_line    0x0000000000000fdb      0x47c /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
- .debug_line    0x0000000000001457      0xd56 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
- .debug_line    0x00000000000021ad      0x7a2 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
- .debug_line    0x000000000000294f     0x20c2 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
- .debug_line    0x0000000000004a11     0x3f37 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
- .debug_line    0x0000000000008948     0x1287 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
- .debug_line    0x0000000000009bcf      0xd03 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
- .debug_line    0x000000000000a8d2      0xa2f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
- .debug_line    0x000000000000b301      0x685 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
- .debug_line    0x000000000000b986      0x575 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
- .debug_line    0x000000000000befb       0x99 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/start.o
- .debug_line    0x000000000000bf94       0x5f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/vector.o
- .debug_line    0x000000000000bff3       0xf2 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/portASM.o
+ .debug_line    0x0000000000000fdb      0x4dd /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
+ .debug_line    0x00000000000014b8      0xd56 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
+ .debug_line    0x000000000000220e      0x7a2 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
+ .debug_line    0x00000000000029b0     0x20c2 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
+ .debug_line    0x0000000000004a72     0x3f37 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
+ .debug_line    0x00000000000089a9     0x1287 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
+ .debug_line    0x0000000000009c30      0xd03 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
+ .debug_line    0x000000000000a933      0xa2f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
+ .debug_line    0x000000000000b362      0x6b3 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
+ .debug_line    0x000000000000ba15      0x3f6 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
+ .debug_line    0x000000000000be0b       0x99 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/start.o
+ .debug_line    0x000000000000bea4       0x5f /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/vector.o
+ .debug_line    0x000000000000bf03       0xf2 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/portASM.o
 
-.debug_str      0x0000000000000000    0x18290
+.debug_str      0x0000000000000000    0x182d4
  .debug_str     0x0000000000000000     0xe4be /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/trace_time.o
                                        0xe64b (size before relaxing)
- .debug_str     0x000000000000e4be     0x33ef /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
-                                      0x11a0f (size before relaxing)
- .debug_str     0x00000000000118ad      0x921 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main_blinky.o
+ .debug_str     0x000000000000e4be     0x33fa /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main.o
+                                      0x11a1a (size before relaxing)
+ .debug_str     0x00000000000118b8      0x921 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/main_blinky.o
                                       0x10f38 (size before relaxing)
- .debug_str     0x00000000000121ce       0x38 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
-                                       0xe59e (size before relaxing)
- .debug_str     0x0000000000012206      0x379 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
-                                       0xe9a5 (size before relaxing)
- .debug_str     0x000000000001257f     0x16e6 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
+ .debug_str     0x00000000000121d9       0x5b /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_mem.o
+                                       0xe5c1 (size before relaxing)
+ .debug_str     0x0000000000012234      0x379 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/my_stdlib/src/my_stdio.o
+                                       0xe9b0 (size before relaxing)
+ .debug_str     0x00000000000125ad     0x16e6 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/list.o
                                       0x107f5 (size before relaxing)
- .debug_str     0x0000000000013c65      0xd5e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
+ .debug_str     0x0000000000013c93      0xd5e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/queue.o
                                       0x131a1 (size before relaxing)
- .debug_str     0x00000000000149c3     0x2379 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
+ .debug_str     0x00000000000149f1     0x2379 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/tasks.o
                                       0x144b8 (size before relaxing)
- .debug_str     0x0000000000016d3c      0x60a /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
+ .debug_str     0x0000000000016d6a      0x60a /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/~/Desktop/FreeRTOS/FreeRTOS/Source/timers.o
                                       0x1348e (size before relaxing)
- .debug_str     0x0000000000017346      0x737 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
+ .debug_str     0x0000000000017374      0x737 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/heap_4.o
                                       0x123a7 (size before relaxing)
- .debug_str     0x0000000000017a7d      0x44e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
+ .debug_str     0x0000000000017aab      0x44e /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/port.o
                                       0x1207c (size before relaxing)
- .debug_str     0x0000000000017ecb      0x14b /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
-                                       0x62cd (size before relaxing)
- .debug_str     0x0000000000018016      0x20b /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
-                                       0xea22 (size before relaxing)
- .debug_str     0x0000000000018221       0x14 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/start.o
+ .debug_str     0x0000000000017ef9      0x161 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/gic_v3.o
+                                       0x62e3 (size before relaxing)
+ .debug_str     0x000000000001805a      0x20b /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/Drivers/src/uart.o
+                                       0x540c (size before relaxing)
+ .debug_str     0x0000000000018265       0x14 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/start.o
                                          0x5b (size before relaxing)
- .debug_str     0x0000000000018235        0x9 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/vector.o
+ .debug_str     0x0000000000018279        0x9 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build/vector.o
                                          0x5c (size before relaxing)
- .debug_str     0x000000000001823e       0x52 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/portASM.o
+ .debug_str     0x0000000000018282       0x52 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/CORTEX_A72_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Port/GCC/ARM_AARCH64_QEMU/portASM.o
                                          0xa5 (size before relaxing)
 
 .comment        0x0000000000000000       0x2b

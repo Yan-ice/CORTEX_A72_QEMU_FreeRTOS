@@ -9,16 +9,12 @@
 #include "trace.h"
 #endif
 
-volatile unsigned int* coreTimer = (volatile unsigned int*)0x40000000;
+//volatile unsigned int* coreTimer = (volatile unsigned int*)0x40000000;
 volatile unsigned int* coreTimerPrescaler = (volatile unsigned int*)0x40000008;
 volatile unsigned int* coreTimerLow = (volatile unsigned int*)0x4000001C;
 volatile unsigned int* coreTimerHigh = (volatile unsigned int*)0x40000020;
 
 volatile unsigned int* systemTimer = (volatile unsigned int*)0x3F003004;
-
-volatile unsigned int* coreMailboxInterruptCtrl = (volatile unsigned int*)0x40000050;
-volatile unsigned int* coreMailboxInterrupt = (volatile unsigned int*)0x40000080;
-volatile unsigned int* coreMailboxInterruptClr = (volatile unsigned int*)0x400000C0;
 
 char printfbuf[100];
 
@@ -27,19 +23,23 @@ static int task_ids = 100;
 void no_initialize_test(no_task_entry_t init_test_fct)
 {
 	unsigned int ra;
+	gic_v3_initialize();
+
+    uartinit();
+    vSendString("init success.\n");
 
 	//rpi_cpu_irq_disable();
 	portDISABLE_INTERRUPTS();
-
+	
 #ifdef TRACING
 	clear_trace_buffer();
 	start_trace();
 #endif
 
 	init_test_fct(NULL);
-
 	vTaskStartScheduler();
 }
+
 
 no_task_handle_t no_create_task(no_task_entry_t task_entry, char task_name[4], unsigned int prio)
 {
@@ -72,17 +72,17 @@ void no_task_resume(no_task_handle_t task)
 
 void no_task_delay(unsigned int milliseconds)
 {
-	vTaskDelay(milliseconds);
+	vTaskDelay(pdMS_TO_TICKS(milliseconds));
 }
 
 void no_init_timer()
 {
 	/* Clock timer on APB clock (Half arm speed, 40MHz (from experiment) ??) */
-	*coreTimer = (1 << 7);
+	//*coreTimer = (1 << 7);
 
 	/* This is equivalent to setting prescaler to 1 */
-	*coreTimerPrescaler = 0x80000000;
-	asm volatile ("wfe" : :);
+	//*coreTimerPrescaler = 0x80000000;
+	//asm volatile ("wfe" : :);
 }
 
 void no_disable_timer()
@@ -91,18 +91,22 @@ void no_disable_timer()
 
 void no_reset_timer()
 {
+	
 }
 
 no_time_t no_add_times(const no_time_t* base, unsigned int milliseconds)
 {
-	no_time_t retval = ((*base) + milliseconds * 900000);
-	vSendString(printfbuf);
+	unsigned long clock_rate;
+    __asm__ volatile("mrs %0, cntfrq_el0" : "=r" (clock_rate) ); 
+	
+	no_time_t retval = ((*base) + clock_rate / 1000 * milliseconds);
+	//printf("\nbefore: %ld after: %ld dif: %ld",*base,retval, retval - *base);
 	return retval;
 }
 
 no_time_t no_time_get()
 {
-	unsigned int cc;
+	unsigned long cc;
 	asm volatile ("mrs %0, cntvct_el0" : "=r" (cc));
 	return cc;
 }
@@ -261,32 +265,34 @@ void no_result_report(int64_t max, int64_t min, int64_t average)
 	a = (int32_t)max;
 	b = (int32_t)min;
 	c = (int32_t)average;
-	sprintf(printfbuf, "max=%d\nmin=%d\naverage=%d", a, b, c);
+	sprintf(printfbuf, "\nmax=%d\nmin=%d\naverage=%d\n", a, b, c);
 	no_serial_write(printfbuf);
 }
 
 void no_interrupt_do_sgi()
 {
 	// Trigger core0 interrupt
-	*coreMailboxInterrupt = 0x1;
+	gicd_send_sgi(1, 0);
 }
 
 void no_interrupt_enable_sgi()
 {
-	*coreMailboxInterruptCtrl = 0x1;
+	
 }
 
+void* fns[65];
 void no_interrupt_register_sgi_handler(no_int_handler_t fn)
 {
-	no_serial_write("interrupt sgi handled");
+	fns[64] = fn;
 	//rpi_irq_register_handler(64, fn, NULL);
 }
 
 
 void vApplicationIRQHandler( uint32_t ulICCIAR )
 {
-    //printHexISR(ulICCIAR);
-    //vSendStringISR("[vApplicationIRQHandler]\n");
+	vSendStringISR("[vApplicationIRQHandler]\n");
+    printHexISR(ulICCIAR);
+	((void (*)())fns[64])();
 
     return;
 }
@@ -383,9 +389,9 @@ void no_tracing_report()
 	no_serial_write(printfbuf);
 	for (i = 0; i < no_tracing_status.idx; i++)
 	{
-		uart_put_sync(no_trace_buffer[i]);
+		uartputc_sync(no_trace_buffer[i]);
 	}
-	no_serial_write("Trace transmitted");
+	no_serial_write("Trace transmitted\n");
 	no_tracing_status.on = 1;
 }
 
@@ -400,7 +406,7 @@ void clear_trace_buffer()
 
 void start_trace()
 {
-	rpi_aux_mu_string("TRACING ON\n");
+	no_serial_write("TRACING ON\n");
 	no_cycle_reset_counter();
 
 	no_tracing_status.on = 1;

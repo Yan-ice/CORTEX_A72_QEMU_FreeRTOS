@@ -7,7 +7,7 @@
 #ifndef _NO_TRACE_H_
 #define _NO_TRACE_H_
 
-#define NO_BUFFER_SIZE 1310720
+#define NO_BUFFER_SIZE 4096
 
 typedef struct no_tracing_status_ {
 	int on;

@@ -5,17 +5,39 @@ RTOS_SOURCE_DIR = ~/Desktop/FreeRTOS/FreeRTOS/Source
 DEMO_SOURCE_DIR = $(abspath ../Common)
 PORT_SOURCE_DIR = $(abspath ../../Port/GCC/ARM_AARCH64_QEMU)
 
+USE_MMK=1
+DEBUG=1
+
 ##################################
 # NO Bench config.
 NOBENCH_SOURCE_DIR = $(abspath ./RTOSBench)
 
 # select a specific test file.
-# NO_TEST_SRC = $(NOBENCH_SOURCE_DIR)/tests/context-switch/round_robin.c
-NO_TEST_SRC = $(NOBENCH_SOURCE_DIR)/tests/interrupt/interrupt_processing.c
 
-NO_NB_ITER = 5000
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/context-switch/round_robin.c
+
+NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/interrupt/interrupt_processing.c
+
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/mq/mq_processing.c
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/mq/mq.c
+
+#NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/mq/mq_workload.c
+############## MQ workload works very slow. ################
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/mutex/mutex.c
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/mutex/mutex_pip.c
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/mutex/mutex_processing.c
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/mutex/mutex_workload.c
+
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/partition/jitter.c
+
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/semaphore/sem.c
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/semaphore/sem_prio.c
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/semaphore/sem_workload.c
+# NO_TEST_SRC ?= $(NOBENCH_SOURCE_DIR)/tests/semaphore/sem_processing.c
+
 NO_BASE_PRIO = 10
 NO_AFFINITY = 7
+NO_BUFFER_SIZE = 512
 NO_TRACING = $(NOBENCH_SOURCE_DIR)/tracing
 
 ##################################
@@ -25,8 +47,6 @@ CC      = $(CROSS)gcc
 OBJCOPY = $(CROSS)objcopy
 ARCH    = $(CROSS)ar
 
-USE_MMK=0
-DEBUG=1
 TARGET = kernel7
 
 # Generate GCC_VERSION in number format
@@ -45,8 +65,10 @@ CFLAGS = \
 	-I $(NOBENCH_SOURCE_DIR)/include \
 	-I $(PORT_SOURCE_DIR) \
 	-I $(PORT_SOURCE_DIR)/Drivers/include \
-	-D NB_ITER=$(NO_NB_ITER) \
-	-D USE_MMK=$(USE_MMK)
+	-I $(NO_TRACING) \
+	-D USE_MMK=$(USE_MMK) \
+	-D NO_BUFFER_SIZE=$(NO_BUFFER_SIZE) \
+	# -D TRACING
 
 LDFLAGS = -nostartfiles -Tfake_rom.lds -fno-builtin -nostdlib \
 	-Xlinker --gc-sections -fno-common -mgeneral-regs-only\
@@ -89,7 +111,8 @@ SRCS = freertos_porting_layer.c \
 	$(PORT_SOURCE_DIR)/port.c \
 	$(PORT_SOURCE_DIR)/Drivers/src/gic_v3.c \
 	$(PORT_SOURCE_DIR)/Drivers/src/uart.c \
-	$(NO_TEST_SRC)
+	$(NO_TEST_SRC) \
+	$(NO_TRACING)/trace.c
 
 ASMS = start.S vector.S \
 	$(PORT_SOURCE_DIR)/portASM.S

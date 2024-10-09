@@ -6,7 +6,6 @@
 
 #include "trace.h"
 #include "porting_layer.h"
-
 #include <stdint.h>
 
 #define NO_EV_ID_SWITCH_IN 0x200
@@ -43,18 +42,24 @@ static int CAS(long* dest, long new_value, long old_value);
 
 static int CAS(long* dest, long new_value, long old_value)
 {
+	//portENTER_CRITICAL();
+	int val;
+	asm volatile ("ldr %0, [%1]" : "=r" (val) : "r" (dest));
+	if(val != old_value)
+	{
+		//portEXIT_CRITICAL();
+		return 1;
+	}
+	
 	int store_result;
 	do
 	{
-		int val;
-		asm volatile ("ldrex %0, [%1]" : "=r" (val) : "r" (dest));
-		if(val != old_value)
-		{
-			return 1;
-		}
-		asm volatile ("strex %0, %1, [%2]" : "=r" (store_result) : "r" (new_value), "r" (dest));
-	} while (store_result != 0);
+		asm volatile ("str %0, [%1]" : : "r" (new_value), "r" (dest));
+		asm volatile ("ldr %0, [%1]" : "=r" (store_result) : "r" (dest));
+	} while (store_result != new_value);
+	//portEXIT_CRITICAL();
 	return 0;
+	
 }
 
 static no_trace_record_t reserve_memory_buffer(int size)

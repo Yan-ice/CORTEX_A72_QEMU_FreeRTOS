@@ -31,12 +31,9 @@ typedef EventGroupHandle_t no_event_t;
 typedef QueueHandle_t no_mq_t;
 typedef void (*no_int_handler_t)(int, void*);
 
-extern volatile unsigned int* coreMailboxInterruptClr;
-
 #define NO_DECLARE_INT_HANDLER(NAME, TIME_CNTR_SUFFIX) \
 void NAME(int nIRQ, void *pParam) { \
 	WRITE_T2_COUNTER(TIME_CNTR_SUFFIX) \
-	*coreMailboxInterruptClr = 0x1; \
 }
 
 /**

@@ -19,7 +19,7 @@
 #endif
 
 #ifndef DELAY_MS
-#define DELAY_MS 10
+#define DELAY_MS 5
 #endif
 
 no_task_retval_t mq_initialize_test(no_task_argument_t args);
