@@ -1,0 +1,11 @@
+prefix=/home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/libwolfssl
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: wolfssl
+Description: wolfssl C library.
+Version: 5.7.2
+Libs: -L${libdir} -lwolfssl
+Libs.private: -lm
+Cflags: -I${includedir}
