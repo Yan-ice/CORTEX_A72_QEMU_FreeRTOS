@@ -137,7 +137,7 @@ int std_init(void) {
     return append_fd(NULL, &stdio_interface);
 }
 
-int open(const char* fname, int flag) {
+int open (const char *fname, int flag) {
     FF_FILE* file =ff_fopen(fname,"rw");
     if(file != NULL) {
         return append_fd(file, &file_interface);

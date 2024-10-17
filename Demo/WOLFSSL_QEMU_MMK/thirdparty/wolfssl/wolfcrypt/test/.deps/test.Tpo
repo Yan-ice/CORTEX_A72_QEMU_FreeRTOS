@@ -35,7 +35,7 @@ wolfcrypt/test/test.o: wolfcrypt/test/test.c \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/fat/include/ff_headers.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/my_stdlib/include/my_stdlib.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/my_stdlib/include/my_mem.h \
- /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/my_stdlib/include/my_stdio.h \
+ /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/my_stdlib/include/my_my_stdio.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/my_stdlib/include/extern.h \
  /usr/lib/gcc-cross/aarch64-linux-gnu/9/include/stdarg.h \
  /usr/aarch64-linux-gnu/include/string.h \
@@ -45,13 +45,13 @@ wolfcrypt/test/test.o: wolfcrypt/test/test.c \
  /usr/aarch64-linux-gnu/include/bits/strings_fortified.h \
  /usr/aarch64-linux-gnu/include/bits/string_fortified.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/posix/include/FreeRTOS_POSIX/time.h \
- /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/posix/include/FreeRTOS_POSIX/sys/types.h \
+ /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/posix/include/FreeRTOS_POSIX/FreeRTOS_POSIX/sys/types.h \
  /usr/aarch64-linux-gnu/include/stdlib.h \
  /usr/aarch64-linux-gnu/include/bits/waitflags.h \
  /usr/aarch64-linux-gnu/include/bits/waitstatus.h \
  /usr/aarch64-linux-gnu/include/bits/floatn.h \
  /usr/aarch64-linux-gnu/include/bits/floatn-common.h \
- /usr/aarch64-linux-gnu/include/sys/types.h \
+ /usr/aarch64-linux-gnu/include/FreeRTOS_POSIX/sys/types.h \
  /usr/aarch64-linux-gnu/include/bits/types/clock_t.h \
  /usr/aarch64-linux-gnu/include/bits/types/clockid_t.h \
  /usr/aarch64-linux-gnu/include/bits/types/time_t.h \
@@ -183,7 +183,7 @@ wolfssl/wolfcrypt/visibility.h:
 
 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/my_stdlib/include/my_mem.h:
 
-/home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/my_stdlib/include/my_stdio.h:
+/home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/my_stdlib/include/my_my_stdio.h:
 
 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/my_stdlib/include/extern.h:
 
@@ -203,7 +203,7 @@ wolfssl/wolfcrypt/visibility.h:
 
 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/posix/include/FreeRTOS_POSIX/time.h:
 
-/home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/posix/include/FreeRTOS_POSIX/sys/types.h:
+/home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/posix/include/FreeRTOS_POSIX/FreeRTOS_POSIX/sys/types.h:
 
 /usr/aarch64-linux-gnu/include/stdlib.h:
 
@@ -215,7 +215,7 @@ wolfssl/wolfcrypt/visibility.h:
 
 /usr/aarch64-linux-gnu/include/bits/floatn-common.h:
 
-/usr/aarch64-linux-gnu/include/sys/types.h:
+/usr/aarch64-linux-gnu/include/FreeRTOS_POSIX/sys/types.h:
 
 /usr/aarch64-linux-gnu/include/bits/types/clock_t.h:
 

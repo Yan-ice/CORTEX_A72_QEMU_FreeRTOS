@@ -46,7 +46,7 @@
     #include <wolfcrypt/src/misc.c>
 #endif
 #ifdef CHACHA_AEAD_TEST
-    #include <stdio.h>
+    #include <my_stdio.h>
 #endif
 
 

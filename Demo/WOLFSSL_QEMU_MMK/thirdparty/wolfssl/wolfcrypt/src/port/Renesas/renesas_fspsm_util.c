@@ -47,7 +47,7 @@ extern FSPSM_CONFIG     gFSPSM_cfg;
 #include <wolfssl/ssl.h>
 #include <wolfssl/internal.h>
 
-#include <stdio.h>
+#include <my_stdio.h>
 
 #if defined(DEBUG_PK_CB)
     #define WOLFSSL_PKMSG(_f_, ...) printf(_f_, ##__VA_ARGS__)

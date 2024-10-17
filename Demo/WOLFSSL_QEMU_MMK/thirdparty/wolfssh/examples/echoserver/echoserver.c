@@ -80,11 +80,11 @@
 #endif
     #include <signal.h>
 #if defined(__QNX__) || defined(__QNXNTO__)
-    #include <errno.h>
+    #include <FreeRTOS_POSIX/errno.h>
     #include <unix.h>
 
 #elif defined(USE_WINDOWS_API)
-    #include <errno.h>
+    #include <FreeRTOS_POSIX/errno.h>
 #else
     #include <sys/errno.h>
 #endif
@@ -101,7 +101,7 @@
 #endif
 
 #ifndef USE_WINDOWS_API
-    #include <errno.h>
+    #include <FreeRTOS_POSIX/errno.h>
     #define SOCKET_ERRNO errno
     #define SOCKET_ECONNRESET ECONNRESET
     #define SOCKET_ECONNABORTED ECONNABORTED

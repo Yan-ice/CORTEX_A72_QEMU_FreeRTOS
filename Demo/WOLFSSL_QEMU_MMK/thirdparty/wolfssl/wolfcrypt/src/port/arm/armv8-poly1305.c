@@ -46,7 +46,7 @@
     #include <wolfcrypt/src/misc.c>
 #endif
 #ifdef CHACHA_AEAD_TEST
-    #include <stdio.h>
+    #include <my_stdio.h>
 #endif
 
 static WC_INLINE void poly1305_blocks_aarch64_16(Poly1305* ctx,

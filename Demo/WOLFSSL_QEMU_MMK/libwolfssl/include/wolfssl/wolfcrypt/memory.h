@@ -30,7 +30,7 @@
 #define WOLFSSL_MEMORY_H
 
 #if !defined(STRING_USER) && !defined(WOLFSSL_LINUXKM)
-#include <stdlib.h>
+#include <my_stdlib.h>
 #endif
 
 #ifndef WOLF_CRYPT_TYPES_H

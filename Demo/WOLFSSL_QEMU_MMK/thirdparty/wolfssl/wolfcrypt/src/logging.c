@@ -255,7 +255,7 @@ void WOLFSSL_TIME(int count)
     #include "esp_types.h"
     #include "esp_log.h"
 #elif defined(WOLFSSL_TELIT_M2MB)
-    #include <stdio.h>
+    #include <my_stdio.h>
     #include "m2m_log.h"
 #elif defined(WOLFSSL_ANDROID_DEBUG)
     #include <android/log.h>
@@ -264,11 +264,11 @@ void WOLFSSL_TIME(int count)
 #elif defined(WOLFSSL_LINUXKM)
     /* the requisite linux/kernel.h is included in wc_port.h, with incompatible warnings masked out. */
 #elif defined(FUSION_RTOS)
-    #include <fclstdio.h>
+    #include <fclmy_stdio.h>
     #include <wolfssl/wolfcrypt/wc_port.h>
     #define fprintf FCL_FPRINTF
 #else
-    #include <stdio.h>  /* for default printf stuff */
+    #include <my_stdio.h>  /* for default printf stuff */
 #endif
 
 #if defined(THREADX) && !defined(THREADX_NO_DC_PRINTF)

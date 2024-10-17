@@ -1,12 +1,7 @@
 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/build//home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/support_std.o: \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/support_std.c \
  /home/yanice/Desktop/FreeRTOS/FreeRTOS/Source/include/FreeRTOS.h \
- my_stdlib/include/stddef.h my_stdlib/include/stdint.h \
- my_stdlib/include/bits/types.h my_stdlib/include/bits/wordsize.h \
- my_stdlib/include/bits/timesize.h my_stdlib/include/bits/typesizes.h \
- my_stdlib/include/bits/time64.h my_stdlib/include/bits/wchar.h \
- my_stdlib/include/bits/stdint-intn.h \
- my_stdlib/include/bits/stdint-uintn.h \
+ newlib/include_sys/stddef.h newlib/include_sys/stdint.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/FreeRTOSConfig.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/param.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/aarch64.h \
@@ -20,25 +15,9 @@
 
 /home/yanice/Desktop/FreeRTOS/FreeRTOS/Source/include/FreeRTOS.h:
 
-my_stdlib/include/stddef.h:
+newlib/include_sys/stddef.h:
 
-my_stdlib/include/stdint.h:
-
-my_stdlib/include/bits/types.h:
-
-my_stdlib/include/bits/wordsize.h:
-
-my_stdlib/include/bits/timesize.h:
-
-my_stdlib/include/bits/typesizes.h:
-
-my_stdlib/include/bits/time64.h:
-
-my_stdlib/include/bits/wchar.h:
-
-my_stdlib/include/bits/stdint-intn.h:
-
-my_stdlib/include/bits/stdint-uintn.h:
+newlib/include_sys/stdint.h:
 
 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/FreeRTOSConfig.h:
 

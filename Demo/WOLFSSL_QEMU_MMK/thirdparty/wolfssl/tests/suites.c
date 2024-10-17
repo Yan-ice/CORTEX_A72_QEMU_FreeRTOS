@@ -34,8 +34,8 @@
 #endif
 
 #include <my_stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include <my_stdio.h>
+#include <my_stdutil.h>
 #include <wolfssl/ssl.h>
 #include <tests/unit.h>
 #if defined(HAVE_ECC) && defined(FP_ECC) && defined(HAVE_THREAD_LS) \

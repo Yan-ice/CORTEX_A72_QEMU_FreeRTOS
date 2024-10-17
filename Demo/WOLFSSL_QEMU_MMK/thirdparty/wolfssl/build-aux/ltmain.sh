@@ -5620,7 +5620,7 @@ EOF
 #ifdef _MSC_VER
 # define _CRT_SECURE_NO_DEPRECATE 1
 #endif
-#include <stdio.h>
+#include <my_stdio.h>
 #include <stdlib.h>
 #ifdef _MSC_VER
 # include <direct.h>
@@ -5636,9 +5636,9 @@ EOF
 #include <malloc.h>
 #include <stdarg.h>
 #include <assert.h>
-#include <string.h>
+#include <my_stdutil.h>
 #include <ctype.h>
-#include <errno.h>
+#include <FreeRTOS_POSIX/errno.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 

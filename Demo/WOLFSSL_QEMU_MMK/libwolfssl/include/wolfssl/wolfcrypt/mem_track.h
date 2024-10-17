@@ -72,7 +72,7 @@
          */
         #define wc_mem_printf(...) printf(__VA_ARGS__)
     #else
-        #include <stdio.h>
+        #include <my_stdio.h>
         #define wc_mem_printf(...) fprintf(stderr, __VA_ARGS__)
     #endif
 #endif
@@ -138,7 +138,7 @@ typedef struct memoryList {
 static memoryStats ourMemStats;
 
 #ifdef DO_MEM_LIST
-    #include <pthread.h>
+    #include <my_stdlib.h>
     static memoryList ourMemList;
     static pthread_mutex_t memLock = PTHREAD_MUTEX_INITIALIZER;
 #endif
@@ -439,11 +439,9 @@ static WC_INLINE int CleanupMemoryTracker(void)
 
 #ifdef HAVE_STACK_SIZE
 
-#include <stdio.h>
-#include <pthread.h>
-#include <errno.h>
+#include <FreeRTOS_POSIX/errno.h>
 #include <sched.h>
-#include <unistd.h>
+#include <my_stdlib.h>
 
 typedef void* (*thread_func)(void* args);
 #define STACK_CHECK_VAL 0x01

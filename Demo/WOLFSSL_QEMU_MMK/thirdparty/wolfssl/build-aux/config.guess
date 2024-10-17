@@ -485,7 +485,7 @@ case "$UNAME_MACHINE:$UNAME_SYSTEM:$UNAME_RELEASE:$UNAME_VERSION" in
 	eval "$set_cc_for_build"
 	sed 's/^	//' << EOF > "$dummy.c"
 #ifdef __cplusplus
-#include <stdio.h>  /* for printf() prototype */
+#include <my_stdio.h>  /* for printf() prototype */
 	int main (int argc, char *argv[]) {
 #else
 	int main (argc, argv) int argc; char *argv[]; {
@@ -578,7 +578,7 @@ EOF
 	echo "$UNAME_MACHINE"-ibm-aix"$IBM_REV"
 	exit ;;
     *:AIX:2:3)
-	if grep bos325 /usr/include/stdio.h >/dev/null 2>&1; then
+	if grep bos325 /usr/include/my_stdio.h >/dev/null 2>&1; then
 		eval "$set_cc_for_build"
 		sed 's/^		//' << EOF > "$dummy.c"
 		#include <sys/systemcfg.h>
@@ -597,7 +597,7 @@ EOF
 		else
 			echo rs6000-ibm-aix3.2.5
 		fi
-	elif grep bos324 /usr/include/stdio.h >/dev/null 2>&1; then
+	elif grep bos324 /usr/include/my_stdio.h >/dev/null 2>&1; then
 		echo rs6000-ibm-aix3.2.4
 	else
 		echo rs6000-ibm-aix3.2

@@ -77,7 +77,7 @@ int wolf_test_task(void);
 /* encode system/libc error code */
 #if defined(HAVE_ERRNO_H) && !defined(NO_FILESYSTEM) && \
     !defined(NO_STDIO_FILESYSTEM) && !defined(WOLFSSL_USER_IO)
-#include <errno.h>
+#include <FreeRTOS_POSIX/errno.h>
 #define WC_TEST_RET_ENC_ERRNO WC_TEST_RET_ENC(WC_TEST_RET_LN, errno, WC_TEST_RET_TAG_ERRNO)
 #else
 #define WC_TEST_RET_ENC_ERRNO WC_TEST_RET_ENC_NC

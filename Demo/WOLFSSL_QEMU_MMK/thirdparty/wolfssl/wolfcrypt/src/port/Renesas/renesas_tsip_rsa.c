@@ -25,8 +25,8 @@
     (defined(WOLFSSL_RENESAS_TSIP_TLS) || \
      defined(WOLFSSL_RENESAS_TSIP_CRYPTONLY))
 
-#include <string.h>
-#include <stdio.h>
+#include <my_stdutil.h>
+#include <my_stdio.h>
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>

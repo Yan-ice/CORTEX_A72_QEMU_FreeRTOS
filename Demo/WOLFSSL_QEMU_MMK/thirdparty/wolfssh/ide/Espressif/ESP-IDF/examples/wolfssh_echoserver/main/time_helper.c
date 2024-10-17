@@ -32,7 +32,7 @@
         #include <esp_netif_sntp.h>
         // #include <esp_sntp.h>
     #else
-        #include <string.h>
+        #include <my_stdutil.h>
         #include <esp_sntp.h>
     #endif
 #else

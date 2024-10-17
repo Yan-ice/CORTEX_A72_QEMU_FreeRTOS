@@ -36,8 +36,8 @@
 #define NO_MAIN_DRIVER
 
 #include <wolfssl/wolfcrypt/port/cavium/cavium_octeon_sync.h>
-#include <stdio.h>
-#include <string.h>
+#include <my_stdio.h>
+#include <my_stdutil.h>
 #include <assert.h>
 
 #include "cvmx.h"

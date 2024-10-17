@@ -18,7 +18,7 @@
  * along with wolfSSH.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <stdio.h>
-#include <string.h>
+#include <my_stdutil.h>
 #include "r_t4_itcpip.h"
 
 #define WOLFSSH_TEST_SERVER

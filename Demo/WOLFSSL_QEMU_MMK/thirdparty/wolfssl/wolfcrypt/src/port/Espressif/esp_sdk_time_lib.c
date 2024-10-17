@@ -66,7 +66,7 @@ esp_err_t esp_sdk_time_lib_init(void)
         #include <lwip/apps/sntp.h>
         #include <esp_netif_sntp.h>
     #else
-        #include <string.h>
+        #include <my_stdutil.h>
         #include <esp_sntp.h>
     #endif
 

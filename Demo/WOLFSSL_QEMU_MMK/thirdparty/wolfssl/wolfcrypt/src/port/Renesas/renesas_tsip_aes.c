@@ -19,14 +19,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335, USA
  */
 
-#include <string.h>
-#include <stdio.h>
+#include <my_stdutil.h>
+#include <my_stdio.h>
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>
 #endif
 #include <wolfssl/wolfcrypt/settings.h>
-#include <stdio.h>
+#include <my_stdio.h>
 
 #ifndef NO_AES
 

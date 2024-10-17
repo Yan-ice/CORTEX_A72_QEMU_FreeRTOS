@@ -42,7 +42,7 @@
 #include <wolfssl/wolfcrypt/port/caam/caam_driver.h>
 #include <wolfssl/wolfcrypt/port/caam/caam_error.h>
 
-#include <string.h> /* for memcpy / memset */
+#include <my_stdutil.h> /* for memcpy / memset */
 
 struct JobRing {
     /* base address for job ring */

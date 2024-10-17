@@ -520,7 +520,7 @@ typedef struct w64wrapper {
             /* this platform does not support heap use */
             #ifdef WOLFSSL_MALLOC_CHECK
                 #ifndef NO_STDIO_FILESYSTEM
-                #include <stdio.h>
+                #include <my_stdio.h>
                 #endif
                 static inline void* malloc_check(size_t sz) {
                     fprintf(stderr, "wolfSSL_malloc failed");
@@ -723,7 +723,7 @@ typedef struct w64wrapper {
         #if defined(WOLFSSL_LINUXKM)
             #include <linux/string.h>
         #else
-            #include <string.h>
+            #include <my_stdutil.h>
         #endif
 
         #define XMEMCPY(d,s,l)    memcpy((d),(s),(l))
@@ -845,18 +845,18 @@ typedef struct w64wrapper {
                 #define XSNPRINTF _xsnprintf_
             #elif defined(FREESCALE_MQX)
                 /* see wc_port.h for fio.h and nio.h includes.  MQX does not
-                   have stdio.h available, so it needs its own section. */
+                   have my_stdio.h available, so it needs its own section. */
                 #define XSNPRINTF snprintf
             #elif defined(WOLF_C89)
                 #ifndef NO_STDIO_FILESYSTEM
-                #include <stdio.h>
+                #include <my_stdio.h>
                 #endif
                 #define XSPRINTF sprintf
                 /* snprintf not available for C89, so remap using macro */
                 #define XSNPRINTF(f, len, ...) sprintf(f, __VA_ARGS__)
             #else
                 #ifndef NO_STDIO_FILESYSTEM
-                #include <stdio.h>
+                #include <my_stdio.h>
                 #endif
                 #define XSNPRINTF snprintf
             #endif
@@ -867,7 +867,7 @@ typedef struct w64wrapper {
                        Windows 10, snprintf is no longer identical to
                        _snprintf. The snprintf function behavior is now
                        C99 standard compliant. */
-                    #include <stdio.h>
+                    #include <my_stdio.h>
                     #define XSNPRINTF snprintf
                 #else
                     /* 4996 warning to use MS extensions e.g., _sprintf_s

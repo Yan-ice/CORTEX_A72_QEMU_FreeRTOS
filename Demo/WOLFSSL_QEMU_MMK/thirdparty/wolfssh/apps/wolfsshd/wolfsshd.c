@@ -71,7 +71,7 @@
     #include <signal.h>
     #include <sys/wait.h>
 #if defined(__QNX__) || defined(__QNXNTO__)
-    #include <errno.h>
+    #include <FreeRTOS_POSIX/errno.h>
     #include <unix.h>
 #else
     #include <sys/errno.h>

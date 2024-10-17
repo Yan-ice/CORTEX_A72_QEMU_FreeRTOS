@@ -30,7 +30,7 @@
 #endif
 
 #include <stdio.h>
-#include <string.h>
+#include <my_stdutil.h>
 
 
 #ifdef CMSIS_OS2_H_

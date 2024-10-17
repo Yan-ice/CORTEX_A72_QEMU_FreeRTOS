@@ -1483,7 +1483,7 @@ _LT_EOF
 #if HAVE_DLFCN_H
 #include <dlfcn.h>
 #endif
-#include <stdio.h>
+#include <my_stdio.h>
 #ifndef RTLD_GLOBAL
 #  ifdef DL_GLOBAL
 #    define RTLD_GLOBAL DL_GLOBAL

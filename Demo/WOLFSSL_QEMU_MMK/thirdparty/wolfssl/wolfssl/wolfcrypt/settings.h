@@ -52,6 +52,7 @@
     extern "C" {
 #endif
 
+
 /* This flag allows wolfSSL to include options.h instead of having client
  * projects do it themselves. This should *NEVER* be defined when building
  * wolfSSL as it can cause hard to debug problems. */
@@ -267,6 +268,17 @@
 
 /* Uncomment next line if using MAXQ108x */
 /* #define WOLFSSL_MAXQ108X */
+
+
+#define YAN_ICE_CUSTOM
+
+#ifdef YAN_ICE_CUSTOM
+    #define NO_TIMEVAL
+    #define USE_WOLFSSL_IO
+    #define FREERTOS_POSIX
+    #define NO_WOLFSSL_DIR
+    #define WOLFSSL_NO_SOCK
+#endif
 
 /* Check PLATFORMIO first, as it may define other known environments. */
 #ifdef PLATFORMIO
@@ -1310,7 +1322,7 @@ extern void uITRON4_free(void *p) ;
   #endif
 
   #ifndef NO_STDIO_FGETS_REMAP
-    #include <stdio.h>
+    #include <my_stdio.h>
     #include "tm/tmonitor.h"
 
     /* static char* gets(char *buff); */
@@ -1616,7 +1628,7 @@ extern void uITRON4_free(void *p) ;
         #include "fs.h"
     #endif
     #define WOLFSSL_LWIP
-    #include <errno.h>  /* for tcp errno */
+    #include <FreeRTOS_POSIX/errno.h>  /* for tcp errno */
     #define WOLFSSL_SAFERTOS
     #if defined(__IAR_SYSTEMS_ICC__)
         /* enum uses enum */

@@ -84,7 +84,7 @@ void *z_realloc(void *ptr, size_t size)
 #include <wolfssl/wolfcrypt/logging.h>
 
 #if defined(WOLFSSL_DEBUG_MEMORY) && defined(WOLFSSL_DEBUG_MEMORY_PRINT)
-#include <stdio.h>
+#include <my_stdio.h>
 #endif
 
 #ifdef WOLFSSL_FORCE_MALLOC_FAIL_TEST
@@ -100,7 +100,7 @@ void *z_realloc(void *ptr, size_t size)
 #endif
 #if defined(WOLFSSL_MALLOC_CHECK) || defined(WOLFSSL_TRACK_MEMORY_FULL) || \
                                                      defined(WOLFSSL_MEMORY_LOG)
-    #include <stdio.h>
+    #include <my_stdio.h>
 #endif
 
 

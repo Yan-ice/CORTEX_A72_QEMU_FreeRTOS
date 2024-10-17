@@ -24,8 +24,8 @@
 #if !defined(NO_RSA) && \
     defined(WOLFSSL_RENESAS_FSPSM_CRYPTONLY)
 
-#include <string.h>
-#include <stdio.h>
+#include <my_stdutil.h>
+#include <my_stdio.h>
 
 #ifdef HAVE_CONFIG_H
     #include <config.h>

@@ -29,7 +29,7 @@
 
 #if defined(WOLFSSL_MICROCHIP_PIC32MZ)
     #define MICROCHIP_PIC32
-    #include <stdio.h>
+    #include <my_stdio.h>
     #include <my_stdlib.h>
     #include "PIC32MZ-serial.h"
     #include <xc.h>
@@ -37,7 +37,7 @@
     #define SYS_CLK 200000000
 #else
     #define PIC32_STARTER_KIT
-    #include <stdio.h>
+    #include <my_stdio.h>
     #include <my_stdlib.h>
     #include <p32xxxx.h>
     #define _SUPPRESS_PLIB_WARNING

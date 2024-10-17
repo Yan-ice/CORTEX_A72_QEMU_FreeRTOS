@@ -63,7 +63,7 @@
     /* No system headers required for build. */
 #elif defined(USE_WINDOWS_API)
     #if defined(WOLFSSL_PTHREADS)
-        #include <pthread.h>
+        #include <my_stdlib.h>
     #endif
     #ifdef WOLFSSL_GAME_BUILD
         #include "system/xtl.h"
@@ -196,7 +196,7 @@
                 /* definitions are in linuxkm/linuxkm_wc_port.h */
             #else
                 #define WOLFSSL_PTHREADS
-                #include <pthread.h>
+                #include <my_stdlib.h>
             #endif
         #endif
     #endif
@@ -205,7 +205,7 @@
         #ifdef FUSION_RTOS
             #include <fclunistd.h>
         #else
-            #include <unistd.h>      /* for close of BIO */
+            #include <my_stdlib.h>      /* for close of BIO */
         #endif
     #endif
 #endif
@@ -245,7 +245,7 @@
     #elif defined(MAXQ10XX_MUTEX)
         #include <sys/mman.h>
         #include <fcntl.h>
-        #include <pthread.h>
+        #include <my_stdlib.h>
         typedef pthread_mutex_t wolfSSL_Mutex;
         int maxq_CryptHwMutexTryLock(void);
     #elif defined(WOLFSSL_PTHREADS)
@@ -641,7 +641,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     #define XFGETS(b,s,f)            f_gets((b), (s), (f))
 #elif defined (_WIN32_WCE)
     /* stdio, WINCE case */
-    #include <stdio.h>
+    #include <my_stdio.h>
     #define XFILE      FILE*
     #define XFOPEN     fopen
     #define XFDOPEN    fdopen
@@ -657,7 +657,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     #define XVSNPRINTF _vsnprintf
 
 #elif defined(FUSION_RTOS)
-    #include <fclstdio.h>
+    #include <fclmy_stdio.h>
     #include <fclunistd.h>
     #include <fcldirent.h>
     #include <sys/fclstat.h>
@@ -695,7 +695,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     /* To be defined in user_settings.h */
 #else
     /* stdio, default case */
-    #include <stdio.h>
+    #include <my_stdio.h>
     #define XFILE      FILE*
     #if defined(WOLFSSL_MDK_ARM)
         extern FILE * wolfSSL_fopen(const char *name, const char *mode) ;
@@ -762,7 +762,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
             #ifndef NO_WOLFSSL_DIR
                 #include <dirent.h>
             #endif
-            #include <unistd.h>
+            #include <my_stdlib.h>
             #include <sys/stat.h>
             #define XWRITE      write
             #define XREAD       read
@@ -931,7 +931,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     #ifndef XTIME
         #define XTIME(t1)       xilinx_time((t1))
     #endif
-    #include <time.h>
+    #include <my_stdlib.h>
     time_t xilinx_time(time_t * timer);
 
 #elif defined(HAVE_RTP_SYS)
@@ -943,31 +943,31 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     #define XGMTIME(c, t)   rtpsys_gmtime((c))
 
 #elif defined(WOLFSSL_DEOS) || defined(WOLFSSL_DEOS_RTEMS)
-    #include <time.h>
+    #include <my_stdlib.h>
         #ifndef XTIME
             extern time_t deos_time(time_t* timer);
             #define XTIME(t1) deos_time((t1))
         #endif
 #elif defined(MICRIUM)
     #include <clk.h>
-    #include <time.h>
+    #include <my_stdlib.h>
     #define XTIME(t1)       micrium_time((t1))
     #define WOLFSSL_GMTIME
 
 #elif defined(MICROCHIP_TCPIP_V5) || defined(MICROCHIP_TCPIP)
-    #include <time.h>
+    #include <my_stdlib.h>
     extern time_t pic32_time(time_t* timer);
     #define XTIME(t1)       pic32_time((t1))
     #define XGMTIME(c, t)   gmtime((c))
 
 #elif defined(FREESCALE_RTC)
-    #include <time.h>
+    #include <my_stdlib.h>
         #include "fsl_rtc.h"
         #ifndef XTIME
         #define XTIME(t1) fsl_time((t1))
     #endif
 #elif defined(FREESCALE_SNVS_RTC)
-    #include <time.h>
+    #include <my_stdlib.h>
     #include "fsl_snvs_hp.h"
     time_t fsl_time(time_t* t);
     #ifndef XTIME
@@ -975,7 +975,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     #endif
 #elif defined(FREESCALE_MQX) || defined(FREESCALE_KSDK_MQX)
     #ifdef FREESCALE_MQX_4_0
-        #include <time.h>
+        #include <my_stdlib.h>
         extern time_t mqx_time(time_t* timer);
     #else
         #define HAVE_GMTIME_R
@@ -983,7 +983,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     #define XTIME(t1)       mqx_time((t1))
 
 #elif defined(FREESCALE_KSDK_BM) || defined(FREESCALE_FREE_RTOS) || defined(FREESCALE_KSDK_FREERTOS)
-    #include <time.h>
+    #include <my_stdlib.h>
     #ifndef XTIME
         /*extern time_t ksdk_time(time_t* timer);*/
         #define XTIME(t1)   ksdk_time((t1))
@@ -997,7 +997,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     #define USE_WOLF_TIME_T
 
 #elif defined(WOLFSSL_WICED)
-    #include <time.h>
+    #include <my_stdlib.h>
     time_t wiced_pseudo_unix_epoch_time(time_t * timer);
     #define XTIME(t1)       wiced_pseudo_unix_epoch_time((t1))
     #define HAVE_GMTIME_R
@@ -1005,13 +1005,13 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
 #elif defined(IDIRECT_DEV_TIME)
     /*Gets the timestamp from cloak software owned by VT iDirect
     in place of time() from <time.h> */
-    #include <time.h>
+    #include <my_stdlib.h>
     #define XTIME(t1)       idirect_time((t1))
     #define XGMTIME(c, t)   gmtime((c))
 
 #elif defined(_WIN32_WCE)
     #include <windows.h>
-    #include <stdlib.h> /* For file system */
+    #include <mt_stdlib.h> /* For file system */
 
     time_t windows_time(time_t* timer);
 
@@ -1055,7 +1055,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
             #include <posix/time.h>
         #endif
     #else
-        #include <time.h>
+        #include <my_stdlib.h>
     #endif
 
     #if defined(CONFIG_RTC)
@@ -1093,16 +1093,16 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     /* definitions are in linuxkm/linuxkm_wc_port.h */
 
 #elif defined(HAL_RTC_MODULE_ENABLED)
-    #include <time.h>
+    #include <my_stdlib.h>
     WOLFSSL_LOCAL time_t stm32_hal_time(time_t* t1);
     #define XTIME(t1) stm32_hal_time(t1)
     #define WOLFSSL_GMTIME
 #else
     /* default */
     /* uses complete <time.h> facility */
-    #include <time.h>
+    #include <my_stdlib.h>
     #if defined(HAVE_SYS_TIME_H)
-        #include <sys/time.h>
+        #include <my_stdlib.h>
     #endif
 
     /* PowerPC time_t is int */

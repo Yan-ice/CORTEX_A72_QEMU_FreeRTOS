@@ -24,9 +24,6 @@ extern "C" {
 #undef  HAVE_C___ATOMIC
 #define HAVE_C___ATOMIC 1
 
-#undef  HAVE_THREAD_LS
-#define HAVE_THREAD_LS
-
 #undef  NO_DO178
 #define NO_DO178
 
@@ -197,6 +194,9 @@ extern "C" {
 
 #undef  FREERTOS_FAT
 #define FREERTOS_FAT
+
+#undef  FREERTOS_TCP
+#define FREERTOS_TCP
 
 
 #ifdef __cplusplus

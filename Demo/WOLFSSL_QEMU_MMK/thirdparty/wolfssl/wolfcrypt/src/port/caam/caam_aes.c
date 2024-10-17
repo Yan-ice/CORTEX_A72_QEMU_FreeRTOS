@@ -43,7 +43,7 @@
 #include <wolfssl/wolfcrypt/port/caam/caam_driver.h>
 
 #if defined(WOLFSSL_CAAM_DEBUG) || defined(WOLFSSL_CAAM_PRINT)
-#include <stdio.h>
+#include <my_stdio.h>
 #endif
 
 int  wc_AesSetKey(Aes* aes, const byte* key, word32 len,

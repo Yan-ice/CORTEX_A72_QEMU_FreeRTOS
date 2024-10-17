@@ -844,7 +844,7 @@ Release 5.5.2 of wolfSSL embedded TLS has bug fixes and new features including:
 * Fixup builds using WOLFSSL_LOG_PRINTF
 * Correct DIST_POINT_NAME type value
 * Do not perform IV Wrap test when using cert3389 inlined armasm
-* Fix for Linux kernel module and stdio.h
+* Fix for Linux kernel module and my_stdio.h
 * (D)TLS: send alert on version mismatch
 * Fix PKCS#7 SignedData verification when signer cert is not first in SET
 * Fix bug with wolfIO_TcpConnect not working with timeout on Windows
@@ -2713,7 +2713,7 @@ Release 4.1.0 of wolfSSL embedded TLS has bug fixes and new features including:
 * Sending fatal alert from client side on version error
 * Fix for static RSA cipher suite with PK callback and no loaded private key
 * Fix for potential memory leak in error case with the function wc_DsaKeyToDer, thanks to Chris H. for the report
-* Adjusting STRING_USER macro to remove includes of standard lib <string.h> or <stdio.h>
+* Adjusting STRING_USER macro to remove includes of standard lib <string.h> or <my_stdio.h>
 * Bug fix for checking wrong allocation assignment in the function wc_PBKDF2 and handling potential leak on allocation failure. This case is only hit when the specific call to malloc fails in the function wc_PBKDF2. Thanks to Robert Altnoeder (Linbit) for the report
 * Improved length checks when parsing ASN.1 certificates
 * extern "C" additions to header files that were missing them

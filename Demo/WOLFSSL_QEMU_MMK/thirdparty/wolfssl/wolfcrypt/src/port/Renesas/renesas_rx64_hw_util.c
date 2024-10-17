@@ -29,7 +29,7 @@
 
 #include <wolfssl/wolfcrypt/port/Renesas/renesas-rx64-hw-crypt.h>
 
-#include <stdio.h>
+#include <my_stdio.h>
 /* mutex */
 static wolfSSL_Mutex rx64_hw_mutex;
 static int rx64_hw_CryptHwMutexInit_ = 0;

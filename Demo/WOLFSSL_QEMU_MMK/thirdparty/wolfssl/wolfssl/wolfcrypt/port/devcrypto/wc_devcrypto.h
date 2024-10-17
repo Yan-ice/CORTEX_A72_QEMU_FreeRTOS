@@ -31,7 +31,7 @@
 #include <crypto/cryptodev.h>
 
 #ifdef DEBUG_DEVCRYPTO
-#include <stdio.h>
+#include <my_stdio.h>
 #endif
 
 typedef struct WC_CRYPTODEV {

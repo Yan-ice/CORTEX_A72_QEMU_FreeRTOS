@@ -53,7 +53,7 @@
 #ifndef WOLFSSL_SNIFFER
 #ifndef NO_MAIN_DRIVER
 /* blank build */
-#include <stdio.h>
+#include <my_stdio.h>
 #include <my_stdlib.h>
 int main(void)
 {
@@ -70,9 +70,9 @@ int main(void)
 #endif
 
 #include <pcap/pcap.h>     /* pcap stuff */
-#include <stdio.h>         /* printf */
+#include <my_stdio.h>         /* printf */
 #include <my_stdlib.h>        /* EXIT_SUCCESS */
-#include <string.h>        /* strcmp */
+#include <my_stdutil.h>        /* strcmp */
 #include <signal.h>        /* signal */
 #include <ctype.h>         /* isprint */
 

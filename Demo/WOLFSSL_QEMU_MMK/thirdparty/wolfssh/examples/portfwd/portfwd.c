@@ -35,7 +35,7 @@
 #ifdef HAVE_TERMIOS_H
     #include <termios.h>
 #endif
-#include <errno.h>
+#include <FreeRTOS_POSIX/errno.h>
 #ifdef HAVE_SYS_SELECT_H
     #include <sys/select.h>
 #endif

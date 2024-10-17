@@ -38,10 +38,11 @@ LIBS +=	$(WORK_DIR)/libmmk/build/libmmk_s.a
 INCLUDES += $(WORK_DIR)/my_stdlib/include
 SRCS +=	$(wildcard my_stdlib/src/*.c)
 
-# INCLUDES += ./newlib/include
+INCLUDES += ./newlib/include_sys
 # LIBS +=	-L$(WORK_DIR)/newlib/lib -lc -lm
 
-INCLUDES += $(WORK_DIR)/posix/include $(WORK_DIR)/posix/internal_include
+INCLUDES += $(WORK_DIR)/posix/include $(WORK_DIR)/posix/internal_include $(WORK_DIR)/posix/include/FreeRTOS_POSIX
+
 SRCS +=	$(wildcard posix/src/*.c)
 
 ###########################
@@ -89,7 +90,7 @@ ASMS +=	$(PORT_SOURCE_DIR)/portASM.S
 #INCLUDES += $(WORK_DIR)/libwolfssh/include
 
 ###########################
-# WolfSSH lib files.
+# WolfSSL lib files.
 #
 LIBS += -L$(WORK_DIR)/libwolfssl/lib -lwolfssl
 
@@ -218,9 +219,11 @@ gdb:
 build_wolfssl:
 	cd thirdparty/wolfssl && ./configure \
 		CFLAGS="-DFREERTOS -DFREERTOS_FAT -DFREERTOS_TCP \
+		-nostdlib \
 		-fno-stack-protector -fno-builtin -fno-builtin-function \
 		-I$(WORK_DIR) -I$(RTOS_SOURCE_DIR)/include -I$(FAT_SOURCE_DIR)/include \
-		-I$(PORT_SOURCE_DIR) -I$(WORK_DIR)/my_stdlib/include -I$(WORK_DIR)/posix/include" \
+		-I$(PORT_SOURCE_DIR) -I$(WORK_DIR)/my_stdlib/include -I$(WORK_DIR)/posix/include \
+		-I$(TCP_SOURCE_DIR)/source/include" \
 		--prefix=$(WORK_DIR)/libwolfssl \
 		--host=aarch64-linux-gnu --target=aarch64-linux-gnu \
 		--enable-static --disable-shared --enable-ssh --enable-singlethreaded \

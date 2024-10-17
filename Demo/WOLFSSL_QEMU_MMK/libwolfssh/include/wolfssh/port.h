@@ -477,7 +477,7 @@ extern "C" {
     #ifdef WOLFSSL_VXWORKS
         #include <strings.h>
     #else
-        #include <string.h>
+        #include <my_stdutil.h>
     #endif
 
     #define WMEMCPY(d,s,l)    memcpy((d),(s),(l))

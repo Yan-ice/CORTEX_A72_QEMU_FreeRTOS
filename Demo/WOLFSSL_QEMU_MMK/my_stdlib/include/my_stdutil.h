@@ -9,6 +9,6 @@
 #include "my_stdio.h"
 
 #include <stdarg.h>
-#include <string.h>
+//#include <my_stdutil.h>
 #include <stdint.h>
 #include <stddef.h>

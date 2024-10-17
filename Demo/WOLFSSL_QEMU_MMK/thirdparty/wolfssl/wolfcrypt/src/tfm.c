@@ -89,7 +89,7 @@
     #include <wolfssl/wolfcrypt/port/nxp/ksdk_port.h>
 #endif
 #ifdef WOLFSSL_DEBUG_MATH
-    #include <stdio.h>
+    #include <my_stdio.h>
 #endif
 
 #if defined(WOLFSSL_HAVE_SP_RSA) || defined(WOLFSSL_HAVE_SP_DH)

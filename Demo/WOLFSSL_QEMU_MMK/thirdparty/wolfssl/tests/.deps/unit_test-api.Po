@@ -4,7 +4,7 @@ tests/unit_test-api.o: tests/api.c \
  wolfssl/wolfcrypt/logging.h wolfssl/wolfcrypt/types.h \
  wolfssl/wolfcrypt/wc_port.h \
  /usr/lib/gcc-cross/aarch64-linux-gnu/9/include/stdatomic.h \
- /usr/aarch64-linux-gnu/include/stdio.h \
+ /usr/aarch64-linux-gnu/include/my_stdio.h \
  /usr/aarch64-linux-gnu/include/bits/libc-header-start.h \
  /usr/aarch64-linux-gnu/include/features.h \
  /usr/aarch64-linux-gnu/include/sys/cdefs.h \
@@ -26,7 +26,7 @@ tests/unit_test-api.o: tests/api.c \
  /usr/aarch64-linux-gnu/include/bits/types/struct_FILE.h \
  /usr/aarch64-linux-gnu/include/bits/stdio_lim.h \
  /usr/aarch64-linux-gnu/include/bits/sys_errlist.h \
- /usr/aarch64-linux-gnu/include/bits/stdio.h \
+ /usr/aarch64-linux-gnu/include/bits/my_stdio.h \
  /usr/aarch64-linux-gnu/include/bits/stdio2.h \
  /usr/aarch64-linux-gnu/include/dirent.h \
  /usr/aarch64-linux-gnu/include/bits/dirent.h \
@@ -74,7 +74,7 @@ tests/unit_test-api.o: tests/api.c \
  /usr/aarch64-linux-gnu/include/bits/waitstatus.h \
  /usr/aarch64-linux-gnu/include/bits/floatn.h \
  /usr/aarch64-linux-gnu/include/bits/floatn-common.h \
- /usr/aarch64-linux-gnu/include/sys/types.h \
+ /usr/aarch64-linux-gnu/include/FreeRTOS_POSIX/sys/types.h \
  /usr/aarch64-linux-gnu/include/endian.h \
  /usr/aarch64-linux-gnu/include/bits/byteswap.h \
  /usr/aarch64-linux-gnu/include/bits/uintn-identity.h \
@@ -220,7 +220,7 @@ wolfssl/wolfcrypt/wc_port.h:
 
 /usr/lib/gcc-cross/aarch64-linux-gnu/9/include/stdatomic.h:
 
-/usr/aarch64-linux-gnu/include/stdio.h:
+/usr/aarch64-linux-gnu/include/my_stdio.h:
 
 /usr/aarch64-linux-gnu/include/bits/libc-header-start.h:
 
@@ -264,7 +264,7 @@ wolfssl/wolfcrypt/wc_port.h:
 
 /usr/aarch64-linux-gnu/include/bits/sys_errlist.h:
 
-/usr/aarch64-linux-gnu/include/bits/stdio.h:
+/usr/aarch64-linux-gnu/include/bits/my_stdio.h:
 
 /usr/aarch64-linux-gnu/include/bits/stdio2.h:
 
@@ -362,7 +362,7 @@ wolfssl/wolfcrypt/memory.h:
 
 /usr/aarch64-linux-gnu/include/bits/floatn-common.h:
 
-/usr/aarch64-linux-gnu/include/sys/types.h:
+/usr/aarch64-linux-gnu/include/FreeRTOS_POSIX/sys/types.h:
 
 /usr/aarch64-linux-gnu/include/endian.h:
 

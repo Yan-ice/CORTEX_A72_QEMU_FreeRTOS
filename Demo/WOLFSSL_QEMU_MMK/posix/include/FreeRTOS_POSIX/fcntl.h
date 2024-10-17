@@ -104,7 +104,7 @@ typedef FF_FILE* FILE;
 int std_init(void);
 
 //int open(char* fname, int flag, mode_t mode);
-int open(const char* fname, int flag);
+int open (const char *__file, int __oflag);
 
 int socket(int domain, int type, int protocol);
 

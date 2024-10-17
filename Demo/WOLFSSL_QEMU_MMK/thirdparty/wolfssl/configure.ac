@@ -139,7 +139,7 @@ fi
     #include <sys/socket.h>
 #endif
 #ifdef HAVE_STRING_H
-    #include <string.h>
+    #include <my_stdutil.h>
 #endif
 #ifdef HAVE_NETDB_H
     #include <netdb.h>

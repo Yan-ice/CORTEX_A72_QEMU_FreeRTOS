@@ -29,7 +29,7 @@
 #include <wolfssl/wolfcrypt/settings.h>
 #include <wolfssl/wolfcrypt/types.h>
 
-#include <stdio.h>
+#include <my_stdio.h>
 #include <tests/unit.h>
 #include <wolfssl/wolfcrypt/fips_test.h>
 

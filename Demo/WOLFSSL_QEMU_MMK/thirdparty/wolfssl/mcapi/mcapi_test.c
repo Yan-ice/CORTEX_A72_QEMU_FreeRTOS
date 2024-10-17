@@ -52,13 +52,13 @@
     #include <xc.h>
     #pragma config ICESEL = ICS_PGx2
             /* ICE/ICD Comm Channel Select (Communicate on PGEC2/PGED2) */
-    #include <stdio.h>
+    #include <my_stdio.h>
     #include <my_stdlib.h>
     #include "PIC32MZ-serial.h"
     #define  SYSTEMConfigPerformance(n) /* void out SYSTEMConfigPerformance(); */
 #elif defined(MICROCHIP_PIC32)
     #define PIC32_STARTER_KIT
-    #include <stdio.h>
+    #include <my_stdio.h>
     #include <my_stdlib.h>
     #include <p32xxxx.h>
     #define _SUPPRESS_PLIB_WARNING
@@ -67,7 +67,7 @@
     #include <sys/appio.h>
     #define init_serial()  /* void out init_serial() */
 #else
-    #include <stdio.h>  /* order matters above ? */
+    #include <my_stdio.h>  /* order matters above ? */
 #endif
 #define OUR_DATA_SIZE 1024
 static byte ourData[OUR_DATA_SIZE];

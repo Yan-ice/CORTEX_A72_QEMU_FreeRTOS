@@ -2534,9 +2534,9 @@ enum {
 /* wolfSSL extension, provide last error from SSL_get_error
    since not using thread storage error queue */
 #ifdef FUSION_RTOS
-    #include <fclstdio.h>
+    #include <fclmy_stdio.h>
 #else
-    #include <stdio.h>
+    #include <my_stdio.h>
 #endif
 WOLFSSL_API void  wolfSSL_ERR_print_errors_fp(XFILE fp, int err);
 #if defined(OPENSSL_EXTRA) || defined(DEBUG_WOLFSSL_VERBOSE)
@@ -3150,7 +3150,7 @@ WOLFSSL_API int wolfSSL_make_eap_keys(WOLFSSL* ssl, void* key, unsigned int len,
 #ifndef _WIN32
     #ifndef NO_WRITEV
         #ifdef __PPU
-            #include <sys/types.h>
+            #include <FreeRTOS_POSIX/sys/types.h>
             #include <sys/socket.h>
         #elif defined(ARDUINO)
             /* TODO board specific */

@@ -28,7 +28,7 @@
 
 #if defined(WOLFSSL_MICROCHIP_PIC32MZ)
     #define MICROCHIP_PIC32
-    #include <stdio.h>
+    #include <my_stdio.h>
     #include <my_stdlib.h>
     #include "PIC32MZ-serial.h"
     #include <xc.h>

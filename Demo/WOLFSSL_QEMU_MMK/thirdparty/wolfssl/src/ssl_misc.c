@@ -241,7 +241,7 @@ static int wolfssl_file_len(XFILE fp, long* fileSz)
         }
     }
     /* Move to end of file. */
-    if ((ret == 0) && (XFSEEK(fp, 0, SEEK_END) != 0)) {
+    if ((ret == 0) && (XFSEEK(fp, 0, XSEEK_END) != 0)) {
         ret = WOLFSSL_BAD_FILE;
     }
     if (ret == 0) {
@@ -252,7 +252,7 @@ static int wolfssl_file_len(XFILE fp, long* fileSz)
         }
     }
     /* Go back to original offset in file. */
-    if ((ret == 0) && (XFSEEK(fp, curr, SEEK_SET) != 0)) {
+    if ((ret == 0) && (XFSEEK(fp, curr, XSEEK_SET) != 0)) {
         ret = WOLFSSL_BAD_FILE;
     }
     /* Validate size. */

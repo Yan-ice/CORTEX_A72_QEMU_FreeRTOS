@@ -56,7 +56,7 @@
     #define SNPRINTF _snprintf
     #define XSLEEP_MS(t) Sleep(t)
 #elif defined(WOLFSSL_MDK_ARM) || defined(WOLFSSL_KEIL_TCP_NET)
-    #include <string.h>
+    #include <my_stdutil.h>
     #include "rl_net.h"
     #define SOCKET_T int
     typedef int socklen_t ;
@@ -74,9 +74,9 @@
         #define XSLEEP_MS(t)  osDelay(t)
     #endif
 #elif defined(WOLFSSL_TIRTOS)
-    #include <string.h>
+    #include <my_stdutil.h>
     #include <netdb.h>
-    #include <sys/types.h>
+    #include <FreeRTOS_POSIX/sys/types.h>
     #include <arpa/inet.h>
     #include <sys/socket.h>
     #include <ti/sysbios/knl/Task.h>
@@ -93,9 +93,9 @@
     #include <hostLib.h>
     #include <sockLib.h>
     #include <arpa/inet.h>
-    #include <string.h>
+    #include <my_stdutil.h>
     #include <selectLib.h>
-    #include <sys/types.h>
+    #include <FreeRTOS_POSIX/sys/types.h>
     #include <netinet/in.h>
     #include <fcntl.h>
     #include <sys/time.h>
@@ -103,8 +103,8 @@
     #include <my_stdlib.h>
     #define SOCKET_T int
 #elif defined(WOLFSSL_ZEPHYR)
-    #include <string.h>
-    #include <sys/types.h>
+    #include <my_stdutil.h>
+    #include <FreeRTOS_POSIX/sys/types.h>
     #include <net/socket.h>
     #define SOCKET_T int
     #define SOL_SOCKET 1
@@ -127,8 +127,8 @@
         return(ret) ;
     }
 #else
-    #include <string.h>
-    #include <sys/types.h>
+    #include <my_stdutil.h>
+    #include <FreeRTOS_POSIX/sys/types.h>
 #ifndef WOLFSSL_LEANPSK
     #include <my_stdlib.h>
     #include <netdb.h>

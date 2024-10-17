@@ -30,6 +30,9 @@
 #include "param.h"
 #include "aarch64.h"
 #include "trace_time.h"
+#include "stddef.h"
+
+//typedef unsigned long size_t;
 /*-----------------------------------------------------------
  * Application specific definitions.
  *
@@ -79,11 +82,18 @@
 #define configCHECK_FOR_STACK_OVERFLOW	2
 #define configUSE_RECURSIVE_MUTEXES		1
 #define configUSE_MALLOC_FAILED_HOOK	1
-#define configUSE_APPLICATION_TASK_TAG	0
+
 #define configUSE_COUNTING_SEMAPHORES	1
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 1
-
 #define configSUPPORT_DYNAMIC_ALLOCATION	1
+#define configSUPPORT_STATIC_ALLOCATION 1
+
+//needed by TCP
+#define configUSE_TASK_FPU_SUPPORT		1
+#define configUSE_APPLICATION_TASK_TAG	1
+
+#define configUSE_POSIX_ERRNO			1
+#define portARMV8M_MINOR_VERSION		0
 
 #define portTASK_SWITCH_HOOK( pxTCB ) vTaskSwitchHook(pxTCB)
 
@@ -103,11 +113,8 @@ void vClearTickInterrupt( void );
 void vRegisterIRQHandler( uint32_t ulID, uintptr_t pxHandlerFunction, void *pvContext );
 void vApplicationIRQHandler( uint32_t ulICCIAR );
 
-// char xApplicationGetRandomNumber( uint32_t *pulNumber );
-
 /* Assert definitions. */
 void vAssertCalled( void );
-#define configASSERT_DEFINED                   1
 #define configASSERT( x )                      do { if ( !(x) ) vAssertCalled(); } while(0)
 
 /* Co-routine definitions. */
@@ -143,5 +150,8 @@ to exclude the API function. */
 #define INCLUDE_xTaskGetCurrentTaskHandle	1
 #define INCLUDE_xTaskGetHandle				1
 #define INCLUDE_xSemaphoreGetMutexHolder	1
+
+/* for FAT */
+#define configNUM_THREAD_LOCAL_STORAGE_POINTERS     4
 
 #endif /* FREERTOS_CONFIG_H */

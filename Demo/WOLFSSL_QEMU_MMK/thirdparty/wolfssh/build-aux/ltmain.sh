@@ -5636,7 +5636,7 @@ EOF
 #include <malloc.h>
 #include <stdarg.h>
 #include <assert.h>
-#include <string.h>
+#include <my_stdutil.h>
 #include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>

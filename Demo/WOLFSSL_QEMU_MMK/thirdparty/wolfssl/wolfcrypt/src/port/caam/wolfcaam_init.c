@@ -41,7 +41,7 @@
 #include <wolfssl/wolfcrypt/port/caam/wolfcaam.h>
 
 #ifdef DEBUG_WOLFSSL
-    #include <stdio.h>
+    #include <my_stdio.h>
 #endif
 
 /* determine which porting header to include */

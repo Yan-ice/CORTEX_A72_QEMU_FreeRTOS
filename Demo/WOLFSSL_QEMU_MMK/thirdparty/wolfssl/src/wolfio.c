@@ -170,6 +170,9 @@ static WC_INLINE int wolfSSL_LastError(int err, SOCKET_T sd)
     /* Get the real socket error */
     IP_SOCK_getsockopt(sd, SOL_SOCKET, SO_ERROR, &err, (int)sizeof(old));
     return err;
+#elif defined(FREERTOS_POSIX)
+    #include <FreeRTOS_POSIX/errno.h>
+    return errno;
 #else
     return errno;
 #endif
@@ -3000,7 +3003,7 @@ void wolfSSL_SetIO_Mynewt(WOLFSSL* ssl, struct mn_socket* mnSocket, struct mn_so
 
 #ifdef WOLFSSL_UIP
 #include <uip.h>
-#include <stdio.h>
+#include <my_stdio.h>
 
 /* uIP TCP/IP port, using the native tcp/udp socket api.
  * TCP and UDP are currently supported with the callbacks below.
@@ -3109,7 +3112,7 @@ int uIPGenerateCookie(WOLFSSL* ssl, byte *buf, int sz, void *_ctx)
 
 #include <net/sock.h>
 #include <net/sock/tcp.h>
-#include <stdio.h>
+#include <my_stdio.h>
 
 /* GNRC TCP/IP port, using the native tcp/udp socket api.
  * TCP and UDP are currently supported with the callbacks below.

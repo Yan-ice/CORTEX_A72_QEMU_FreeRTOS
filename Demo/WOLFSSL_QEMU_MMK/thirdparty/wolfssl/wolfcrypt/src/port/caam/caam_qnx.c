@@ -35,10 +35,10 @@
 #include <wolfssl/wolfcrypt/port/caam/caam_driver.h>
 #include <wolfssl/version.h>
 
-#include <errno.h>
-#include <stdio.h>
+#include <FreeRTOS_POSIX/errno.h>
+#include <my_stdio.h>
 #include <my_stdlib.h>
-#include <string.h>
+#include <my_stdutil.h>
 #include <my_stdlib.h>
 #include <my_stdlib.h>
 #include <sys/iofunc.h>

@@ -53,7 +53,7 @@
 #define WOLFSSL_VERSION_PRINTF(...) ESP_LOGI(TAG, __VA_ARGS__)
 /*
  * If used in other platforms:
- *   #include <stdio.h>
+ *   #include <my_stdio.h>
  *   #define WOLFSSL_VERSION_PRINTF(...) { printf(__VA_ARGS__); printf("\n"); }
  */
 

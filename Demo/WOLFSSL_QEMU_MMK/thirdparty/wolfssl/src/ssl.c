@@ -45,7 +45,7 @@
 #endif
 
 #ifdef HAVE_ERRNO_H
-    #include <errno.h>
+    #include <FreeRTOS_POSIX/errno.h>
 #endif
 
 

@@ -417,7 +417,7 @@ int blake2s( byte *out, const void *in, const void *key, const byte outlen,
 }
 
 #if defined(BLAKE2S_SELFTEST)
-#include <string.h>
+#include <my_stdutil.h>
 #include "blake2-kat.h"
 int main( int argc, char **argv )
 {

@@ -63,7 +63,7 @@
 #endif /* WOLFSSH_SHELL */
 
 #ifdef WOLFSSH_AGENT
-    #include <errno.h>
+    #include <FreeRTOS_POSIX/errno.h>
     #include <stddef.h>
     #include <sys/socket.h>
     #include <sys/un.h>

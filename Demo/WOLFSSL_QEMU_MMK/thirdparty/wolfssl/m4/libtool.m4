@@ -1836,7 +1836,7 @@ else
 #include <dlfcn.h>
 #endif
 
-#include <stdio.h>
+#include <my_stdio.h>
 
 #ifdef RTLD_GLOBAL
 #  define LT_DLGLOBAL		RTLD_GLOBAL

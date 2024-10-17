@@ -127,7 +127,7 @@ const byte const_byte_array[] = "A+Gd\0\0\0";
     #define printf PRINTF
 #elif defined(WOLFSSL_APACHE_MYNEWT)
     #include <assert.h>
-    #include <string.h>
+    #include <my_stdutil.h>
     #include "sysinit/sysinit.h"
     #include "os/os.h"
     #ifdef ARCH_sim
@@ -141,7 +141,7 @@ const byte const_byte_array[] = "A+Gd\0\0\0";
     #include <wolfssl/wolfcrypt/port/Espressif/esp32-crypt.h>
     #define ESPIDF_TAG "wc_test"
 #elif defined(WOLFSSL_ZEPHYR)
-    #include <stdio.h>
+    #include <my_stdio.h>
 
     #define printf printk
 #elif defined(MICRIUM)
@@ -152,7 +152,7 @@ const byte const_byte_array[] = "A+Gd\0\0\0";
         #undef printf
         #define printf BSP_Ser_Printf
     #else
-        #include <stdio.h>
+        #include <my_stdio.h>
     #endif
 #elif defined(WOLFSSL_PB)
     #include <stdarg.h>
@@ -187,7 +187,7 @@ const byte const_byte_array[] = "A+Gd\0\0\0";
         #include <my_stdlib.h>  /* we're using malloc / free direct here */
     #endif
     #ifndef STRING_USER
-        #include <stdio.h>
+        #include <my_stdio.h>
     #endif
     #include <android/log.h>
 
@@ -227,7 +227,7 @@ const byte const_byte_array[] = "A+Gd\0\0\0";
         #include <my_stdlib.h>  /* we're using malloc / free direct here */
     #endif
     #if !defined(STRING_USER) && !defined(WOLFSSL_LINUXKM)
-        #include <stdio.h>
+        #include <my_stdio.h>
     #endif
 
     #if defined(WOLFSSL_LINUXKM) && !defined(WOLFSSL_LINUXKM_VERBOSE_DEBUG)

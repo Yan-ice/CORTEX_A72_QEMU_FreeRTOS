@@ -25,8 +25,8 @@
 #include <wolfssl/wolfcrypt/settings.h>
 
 #if !defined(NO_SHA) || !defined(NO_SHA256)
-#include <string.h>
-#include <stdio.h>
+#include <my_stdutil.h>
+#include <my_stdio.h>
 
 #include <wolfssl/internal.h>
 #include <wolfssl/wolfcrypt/logging.h>

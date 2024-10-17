@@ -34,7 +34,7 @@
 #include <wolfssl/error-ssl.h>
 #if defined(SHOW_SECRETS) || defined(CHACHA_AEAD_TEST)
     #ifndef NO_STDIO_FILESYSTEM
-        #include <stdio.h>
+        #include <my_stdio.h>
     #endif
 #endif
 

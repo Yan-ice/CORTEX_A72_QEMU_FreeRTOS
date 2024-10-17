@@ -60,7 +60,7 @@ _BEGIN_STD_C
    and you do
 
      #define _GNU_SOURCE
-     #include <string.h>
+     #include <my_stdutil.h>
 
    you get the GNU version.  Otherwise you get the POSIX versionfor which you
    should #include <libgen.h>i for the function prototype.  POSIX requires that

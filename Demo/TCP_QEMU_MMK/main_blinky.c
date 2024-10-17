@@ -30,7 +30,7 @@
 #include <queue.h>
 
 #include "aarch64.h"
-#include "my_stdlib.h"
+
 
 /* Priorities used by the tasks. */
 #define mainQUEUE_RECEIVE_TASK_PRIORITY    ( tskIDLE_PRIORITY + 2 )
@@ -66,6 +66,20 @@ static void prvQueueSendTask( void * pvParameters )
 
     /* Initialise xNextWakeTime - this only needs to be done once. */
     xNextWakeTime = xTaskGetTickCount();
+    
+    // WOLFSSL_CTX *ctx;
+    // WOLFSSL *ssl;
+    // char buf[256];
+    
+    // // 初始化 wolfSSL
+    // wolfSSL_Init();
+    
+    // // 创建 SSL_CTX 对象
+    // ctx = wolfSSL_CTX_new(wolfTLSv1_2_server_method());
+    // if (ctx == NULL) {
+    //     perror("wolfSSL_CTX_new failed");
+    //     exit(EXIT_FAILURE);
+    // }
     
     for( ; ; )
     {

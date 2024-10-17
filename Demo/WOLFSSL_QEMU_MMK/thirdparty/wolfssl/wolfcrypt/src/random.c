@@ -134,7 +134,7 @@ This library contains implementation for the random number generator.
 #elif defined(CY_USING_HAL) && defined(COMPONENT_WOLFSSL)
     #include "cyhal_trng.h" /* Infineon/Cypress HAL RNG implementation */
 #elif defined(WOLFSSL_GETRANDOM)
-    #include <errno.h>
+    #include <FreeRTOS_POSIX/errno.h>
     #include <sys/random.h>
 #else
     /* include headers that may be needed to get good seed */

@@ -62,7 +62,7 @@ int main_ssl() {
     wolfSSL_free(ssl);
     wolfSSL_CTX_free(ctx);
     FreeRTOS_closesocket(session_sock);
-    FreeRTOS_closesocketclose(sockfd);
+    FreeRTOS_closesocket(sockfd);
     wolfSSL_Cleanup();
 
     return 0;

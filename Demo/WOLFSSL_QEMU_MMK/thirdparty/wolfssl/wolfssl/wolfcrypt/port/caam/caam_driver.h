@@ -50,7 +50,7 @@
 
 
 #ifdef WOLFSSL_CAAM_PRINT
-    #include <stdio.h>
+    #include <my_stdio.h>
     #define WOLFSSL_MSG(in) printf("%s\n", (in))
     void DEBUG_PRINT_ARRAY(void* a, int aSz, char* str);
 #else

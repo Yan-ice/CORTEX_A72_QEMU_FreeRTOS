@@ -52,6 +52,7 @@
     extern "C" {
 #endif
 
+
 /* This flag allows wolfSSL to include options.h instead of having client
  * projects do it themselves. This should *NEVER* be defined when building
  * wolfSSL as it can cause hard to debug problems. */
@@ -267,6 +268,16 @@
 
 /* Uncomment next line if using MAXQ108x */
 /* #define WOLFSSL_MAXQ108X */
+
+
+#define YAN_ICE_CUSTOM
+
+#ifdef YAN_ICE_CUSTOM
+    #define NO_TIMEVAL
+    #define USE_WOLFSSL_IO
+    #define FREERTOS_POSIX
+    #define NO_WOLFSSL_DIR
+#endif
 
 /* Check PLATFORMIO first, as it may define other known environments. */
 #ifdef PLATFORMIO
@@ -1310,7 +1321,7 @@ extern void uITRON4_free(void *p) ;
   #endif
 
   #ifndef NO_STDIO_FGETS_REMAP
-    #include <stdio.h>
+    #include <my_stdio.h>
     #include "tm/tmonitor.h"
 
     /* static char* gets(char *buff); */
@@ -1335,7 +1346,7 @@ extern void uITRON4_free(void *p) ;
 
 #if defined(WOLFSSL_LEANPSK) && !defined(XMALLOC_USER) && \
         !defined(NO_WOLFSSL_MEMORY) && !defined(WOLFSSL_STATIC_MEMORY)
-    #include <stdlib.h>
+    #include <my_stdlib.h>
     #define XMALLOC(s, h, type)  ((void)(h), (void)(type), malloc((s)))
     #define XFREE(p, h, type)    ((void)(h), (void)(type), free((p)))
     #define XREALLOC(p, n, h, t) ((void)(h), (void)(t), realloc((p), (n)))
@@ -1360,6 +1371,8 @@ extern void uITRON4_free(void *p) ;
         #include "FreeRTOS.h"
         #include <task.h>
     //#endif
+    #define WOLFSSL_CHECK_MEM_ZERO
+    #define WOLFSSL_NO_REALLOC
 
     #if !defined(XMALLOC_USER) && !defined(NO_WOLFSSL_MEMORY) && \
         !defined(WOLFSSL_STATIC_MEMORY) && !defined(WOLFSSL_TRACK_MEMORY)
@@ -1423,6 +1436,7 @@ extern void uITRON4_free(void *p) ;
         #endif
     #endif
 
+    #define WOLFSSL_NO_SOCK
     #define NO_CRYPT_TEST
     #undef HAVE_SELFTEST
     // from FREERTOS_TCP
@@ -1431,27 +1445,27 @@ extern void uITRON4_free(void *p) ;
     //#define NO_MAIN_DRIVER
 #endif
 
-#ifdef FREERTOS_TCP
-    #if !defined(NO_WOLFSSL_MEMORY) && !defined(XMALLOC_USER) && \
-        !defined(WOLFSSL_STATIC_MEMORY)
-        #define XMALLOC(s, h, type)  pvPortMalloc((s))
-        #define XFREE(p, h, type)    vPortFree((p))
-    #endif
+// #ifdef FREERTOS_TCP
+//     #if !defined(NO_WOLFSSL_MEMORY) && !defined(XMALLOC_USER) && !defined(WOLFSSL_STATIC_MEMORY)
+//         #define XMALLOC(s, h, type)  pvPortMalloc((s))
+//         #define XFREE(p, h, type)    vPortFree((p))
+//     #endif
 
-    #define WOLFSSL_GENSEED_FORTEST
+//     #define WOLFSSL_GENSEED_FORTEST
+//     WOLFSSL_NO_SOCK
 
-    #define NO_WOLFSSL_DIR
-    #define NO_WRITEV
-    #define TFM_TIMING_RESISTANT
-    #define NO_MAIN_DRIVER
-#endif
+//     #define NO_WOLFSSL_DIR
+//     #define NO_WRITEV
+//     #define TFM_TIMING_RESISTANT
+//     #define NO_MAIN_DRIVER
+// #endif
 
 //Yan_ice: my config
 #ifdef FREERTOS_FAT
     #include "ff_headers.h"
     #include "ff_stdio.h"
     #define XFILE      FF_FILE*
-
+    #define NO_STDIO_FILESYSTEM
     #define WOLFSSL_USER_FILESYSTEM
     #define XFOPEN    ff_fopen
     #define XFSEEK     ff_fseek
@@ -1459,8 +1473,9 @@ extern void uITRON4_free(void *p) ;
     #define XFREAD     ff_fread
     #define XFWRITE    ff_fwrite
     #define XFCLOSE    ff_fclose
-    #define XSEEK_SET  SEEK_SET
-    #define XSEEK_END  SEEK_END
+    #define XSEEK_SET  0
+    #define XSEEK_CUR  1
+    #define XSEEK_END  2
     #define XBADFILE   NULL
     #define XFGETS     ff_fgets
     #define XFPRINTF   ff_fprintf
@@ -1612,7 +1627,7 @@ extern void uITRON4_free(void *p) ;
         #include "fs.h"
     #endif
     #define WOLFSSL_LWIP
-    #include <errno.h>  /* for tcp errno */
+    #include <FreeRTOS_POSIX/errno.h>  /* for tcp errno */
     #define WOLFSSL_SAFERTOS
     #if defined(__IAR_SYSTEMS_ICC__)
         /* enum uses enum */
@@ -2245,7 +2260,7 @@ extern void uITRON4_free(void *p) ;
     #include <sys/printk.h>
     #include <sys/util.h>
 #endif
-    #include <stdlib.h>
+    #include <my_stdlib.h>
 
     #define WOLFSSL_DH_CONST
     #define WOLFSSL_HAVE_MAX

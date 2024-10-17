@@ -43,12 +43,6 @@ wolfcrypt/src/src_libwolfssl_la-sp_int.lo: wolfcrypt/src/sp_int.c \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/my_stdlib/include/my_stdio.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/my_stdlib/include/extern.h \
  /usr/lib/gcc-cross/aarch64-linux-gnu/9/include/stdarg.h \
- /usr/aarch64-linux-gnu/include/string.h \
- /usr/aarch64-linux-gnu/include/bits/types/locale_t.h \
- /usr/aarch64-linux-gnu/include/bits/types/__locale_t.h \
- /usr/aarch64-linux-gnu/include/strings.h \
- /usr/aarch64-linux-gnu/include/bits/strings_fortified.h \
- /usr/aarch64-linux-gnu/include/bits/string_fortified.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/fat/include/FreeRTOSFATConfigDefaults.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/fat/include/FreeRTOS_errno_FAT.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/fat/include/ff_error.h \
@@ -85,7 +79,11 @@ wolfcrypt/src/src_libwolfssl_la-sp_int.lo: wolfcrypt/src/sp_int.c \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/posix/include/FreeRTOS_POSIX/sys/types.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/posix/include/FreeRTOS_POSIX/unistd.h \
  /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/posix/include/FreeRTOS_POSIX/fcntl.h \
- wolfssl/wolfcrypt/memory.h /usr/aarch64-linux-gnu/include/ctype.h \
+ wolfssl/wolfcrypt/memory.h /usr/aarch64-linux-gnu/include/strings.h \
+ /usr/aarch64-linux-gnu/include/bits/types/locale_t.h \
+ /usr/aarch64-linux-gnu/include/bits/types/__locale_t.h \
+ /usr/aarch64-linux-gnu/include/bits/strings_fortified.h \
+ /usr/aarch64-linux-gnu/include/ctype.h \
  /usr/aarch64-linux-gnu/include/bits/endian.h \
  /usr/aarch64-linux-gnu/include/bits/endianness.h wolfcrypt/src/misc.c \
  wolfssl/wolfcrypt/misc.h wolfssl/wolfcrypt/hash.h \
@@ -195,18 +193,6 @@ wolfssl/wolfcrypt/visibility.h:
 
 /usr/lib/gcc-cross/aarch64-linux-gnu/9/include/stdarg.h:
 
-/usr/aarch64-linux-gnu/include/string.h:
-
-/usr/aarch64-linux-gnu/include/bits/types/locale_t.h:
-
-/usr/aarch64-linux-gnu/include/bits/types/__locale_t.h:
-
-/usr/aarch64-linux-gnu/include/strings.h:
-
-/usr/aarch64-linux-gnu/include/bits/strings_fortified.h:
-
-/usr/aarch64-linux-gnu/include/bits/string_fortified.h:
-
 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/fat/include/FreeRTOSFATConfigDefaults.h:
 
 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/fat/include/FreeRTOS_errno_FAT.h:
@@ -282,6 +268,14 @@ wolfssl/wolfcrypt/wc_port.h:
 /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/Demo/WOLFSSL_QEMU_MMK/posix/include/FreeRTOS_POSIX/fcntl.h:
 
 wolfssl/wolfcrypt/memory.h:
+
+/usr/aarch64-linux-gnu/include/strings.h:
+
+/usr/aarch64-linux-gnu/include/bits/types/locale_t.h:
+
+/usr/aarch64-linux-gnu/include/bits/types/__locale_t.h:
+
+/usr/aarch64-linux-gnu/include/bits/strings_fortified.h:
 
 /usr/aarch64-linux-gnu/include/ctype.h:
 

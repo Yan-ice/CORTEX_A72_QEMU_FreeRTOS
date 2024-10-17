@@ -34,7 +34,7 @@
 #include <sys/ioctl.h>
 #include <devctl.h>
 
-#include <errno.h>
+#include <FreeRTOS_POSIX/errno.h>
 
 /* for devctl use */
 int caamFd = -1;

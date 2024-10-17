@@ -25,7 +25,7 @@
     #include <config.h>
 #endif
 
-#include <errno.h>
+#include <FreeRTOS_POSIX/errno.h>
 
 #include <wolfssl/wolfcrypt/settings.h>
 #include <wolfssl/wolfcrypt/error-crypt.h>

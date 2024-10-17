@@ -641,7 +641,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     #define XFGETS(b,s,f)            f_gets((b), (s), (f))
 #elif defined (_WIN32_WCE)
     /* stdio, WINCE case */
-    #include <stdio.h>
+    #include <my_stdio.h>
     #define XFILE      FILE*
     #define XFOPEN     fopen
     #define XFDOPEN    fdopen
@@ -657,7 +657,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     #define XVSNPRINTF _vsnprintf
 
 #elif defined(FUSION_RTOS)
-    #include <fclstdio.h>
+    #include <fclmy_stdio.h>
     #include <fclunistd.h>
     #include <fcldirent.h>
     #include <sys/fclstat.h>
@@ -695,7 +695,7 @@ WOLFSSL_ABI WOLFSSL_API int wolfCrypt_Cleanup(void);
     /* To be defined in user_settings.h */
 #else
     /* stdio, default case */
-    #include <stdio.h>
+    #include <my_stdio.h>
     #define XFILE      FILE*
     #if defined(WOLFSSL_MDK_ARM)
         extern FILE * wolfSSL_fopen(const char *name, const char *mode) ;

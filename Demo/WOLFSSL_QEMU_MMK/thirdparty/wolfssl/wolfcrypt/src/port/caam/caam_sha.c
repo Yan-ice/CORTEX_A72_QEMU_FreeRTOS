@@ -45,7 +45,7 @@
 #include <wolfssl/wolfcrypt/port/caam/wolfcaam.h>
 
 #if defined(WOLFSSL_CAAM_DEBUG) || defined(WOLFSSL_CAAM_PRINT)
-#include <stdio.h>
+#include <my_stdio.h>
 #endif
 
 #ifndef NO_SHA

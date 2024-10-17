@@ -63,7 +63,7 @@
         /* LWIP_SOCKET 1 in lwip/opt.h or in build */
         #include "lwip/sockets.h"
         #ifndef LWIP_PROVIDE_ERRNO
-            #include <errno.h>
+            #include <FreeRTOS_POSIX/errno.h>
             #define LWIP_PROVIDE_ERRNO 1
         #endif
     #elif defined(ARDUINO)
@@ -75,7 +75,7 @@
         #include <rtcs.h>
     #elif (defined(WOLFSSL_MDK_ARM) || defined(WOLFSSL_KEIL_TCP_NET))
         #include "rl_net.h"
-        #include "errno.h"
+        #include "FreeRTOS_POSIX/errno.h"
     #elif defined(WOLFSSL_CMSIS_RTOS)
         #include "cmsis_os.h"
     #elif defined(WOLFSSL_CMSIS_RTOSv2)
@@ -94,10 +94,10 @@
         #endif
     #elif defined(WOLFSSL_VXWORKS)
         #include <sockLib.h>
-        #include <errno.h>
+        #include <FreeRTOS_POSIX/errno.h>
     #elif defined(WOLFSSL_NUCLEUS_1_2)
         #include <externs.h>
-        #include <errno.h>
+        #include <FreeRTOS_POSIX/errno.h>
     #elif defined(WOLFSSL_LINUXKM)
         /* the requisite linux/net.h is included in wc_port.h, with incompatible warnings masked out. */
     #elif defined(WOLFSSL_ATMEL)
@@ -106,7 +106,7 @@
         #undef MIN
         #undef MAX
         #include <rt.h>
-        #include <sys/types.h>
+        #include <FreeRTOS_POSIX/sys/types.h>
         #include <sys/socket.h>
         #include <netdb.h>
         #include <netinet/in.h>
@@ -116,18 +116,18 @@
         #undef SOCKADDR_IN
     #elif defined(WOLFSSL_PRCONNECT_PRO)
         #include <prconnect_pro/prconnect_pro.h>
-        #include <sys/types.h>
-        #include <errno.h>
-        #include <unistd.h>
+        #include <FreeRTOS_POSIX/sys/types.h>
+        #include <FreeRTOS_POSIX/errno.h>
+        #include <my_stdlib.h>
         #include <fcntl.h>
     #elif defined(WOLFSSL_SGX)
-        #include <errno.h>
+        #include <FreeRTOS_POSIX/errno.h>
     #elif defined(WOLFSSL_APACHE_MYNEWT) && !defined(WOLFSSL_LWIP)
         #include <mn_socket/mn_socket.h>
     #elif defined(WOLFSSL_DEOS)
         #include <socketapi.h>
         #include <lwip-socket.h>
-        #include <errno.h>
+        #include <FreeRTOS_POSIX/errno.h>
     #elif defined(WOLFSSL_ZEPHYR)
         #include <version.h>
         #if KERNEL_VERSION_NUMBER >= 0x30100
@@ -145,7 +145,7 @@
         #include <sys/errno.h>
     #elif defined(HAVE_NETX)
         #include "nx_api.h"
-        #include "errno.h"
+        #include "FreeRTOS_POSIX/errno.h"
     #elif defined(FUSION_RTOS)
         #include <sys/fcltypes.h>
         #include <fclerrno.h>
@@ -153,10 +153,10 @@
     #elif defined(WOLFSSL_EMNET)
         #include <IP/IP.h>
     #elif !defined(WOLFSSL_NO_SOCK)
-        #include <sys/types.h>
-        #include <errno.h>
+        #include <FreeRTOS_POSIX/sys/types.h>
+        #include <FreeRTOS_POSIX/errno.h>
         #ifndef EBSNET
-            #include <unistd.h>
+            #include <my_stdlib.h>
         #endif
         #include <fcntl.h>
         #define XFCNTL(fd, flag, block) fcntl((fd), (flag), (block))
@@ -188,11 +188,11 @@
                     defined(WOLFSSL_RENESAS_RA6M4) || \
                     defined(WOLFSSL_RENESAS_RZN2L)
       /* Uses FREERTOS_TCP */
-        #include <errno.h>
+        #include <FreeRTOS_POSIX/errno.h>
     #endif
 
     #if defined(WOLFSSL_EMBOS)
-        #include <errno.h>
+        #include <FreeRTOS_POSIX/errno.h>
     #endif
 
 #endif /* USE_WINDOWS_API */

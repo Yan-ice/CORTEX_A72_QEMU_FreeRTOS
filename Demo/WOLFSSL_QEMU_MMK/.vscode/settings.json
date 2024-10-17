@@ -40,6 +40,8 @@
         "atomic": "c",
         "*.tcc": "c",
         "fstream": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "wc_port.h": "c",
+        "settings.h": "c"
     }
 }

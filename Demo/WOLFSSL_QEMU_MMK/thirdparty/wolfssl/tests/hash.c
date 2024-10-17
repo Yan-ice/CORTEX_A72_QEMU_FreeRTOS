@@ -26,7 +26,7 @@
 
 #include <wolfssl/wolfcrypt/settings.h>
 
-#include <stdio.h>
+#include <my_stdio.h>
 
 #include <wolfssl/wolfcrypt/md4.h>
 #include <wolfssl/wolfcrypt/md5.h>

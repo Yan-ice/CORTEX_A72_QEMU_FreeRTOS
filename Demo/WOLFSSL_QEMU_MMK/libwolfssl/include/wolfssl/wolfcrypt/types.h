@@ -495,7 +495,7 @@ typedef struct w64wrapper {
 
         /* prototypes for user heap override functions */
         #include <stddef.h>  /* for size_t */
-        #include <stdlib.h>
+        #include <my_stdlib.h>
         WOLFSSL_API void *xmalloc(size_t n, void* heap, int type,
                 const char* func, const char* file, unsigned int line);
         WOLFSSL_API void *xrealloc(void *p, size_t n, void* heap, int type,
@@ -520,7 +520,7 @@ typedef struct w64wrapper {
             /* this platform does not support heap use */
             #ifdef WOLFSSL_MALLOC_CHECK
                 #ifndef NO_STDIO_FILESYSTEM
-                #include <stdio.h>
+                #include <my_stdio.h>
                 #endif
                 static inline void* malloc_check(size_t sz) {
                     fprintf(stderr, "wolfSSL_malloc failed");
@@ -536,7 +536,7 @@ typedef struct w64wrapper {
             #endif
         #else
             /* just use plain C stdlib stuff if desired */
-            #include <stdlib.h>
+            #include <my_stdlib.h>
             #define XMALLOC(s, h, t)     ((void)(h), (void)(t), malloc((size_t)(s)))
             #ifdef WOLFSSL_XFREE_NO_NULLNESS_CHECK
                 #define XFREE(p, h, t)       ((void)(h), (void)(t), free(p))
@@ -723,7 +723,7 @@ typedef struct w64wrapper {
         #if defined(WOLFSSL_LINUXKM)
             #include <linux/string.h>
         #else
-            #include <string.h>
+            #include <my_stdutil.h>
         #endif
 
         #define XMEMCPY(d,s,l)    memcpy((d),(s),(l))
@@ -845,18 +845,18 @@ typedef struct w64wrapper {
                 #define XSNPRINTF _xsnprintf_
             #elif defined(FREESCALE_MQX)
                 /* see wc_port.h for fio.h and nio.h includes.  MQX does not
-                   have stdio.h available, so it needs its own section. */
+                   have my_stdio.h available, so it needs its own section. */
                 #define XSNPRINTF snprintf
             #elif defined(WOLF_C89)
                 #ifndef NO_STDIO_FILESYSTEM
-                #include <stdio.h>
+                #include <my_stdio.h>
                 #endif
                 #define XSPRINTF sprintf
                 /* snprintf not available for C89, so remap using macro */
                 #define XSNPRINTF(f, len, ...) sprintf(f, __VA_ARGS__)
             #else
                 #ifndef NO_STDIO_FILESYSTEM
-                #include <stdio.h>
+                #include <my_stdio.h>
                 #endif
                 #define XSNPRINTF snprintf
             #endif
@@ -867,7 +867,7 @@ typedef struct w64wrapper {
                        Windows 10, snprintf is no longer identical to
                        _snprintf. The snprintf function behavior is now
                        C99 standard compliant. */
-                    #include <stdio.h>
+                    #include <my_stdio.h>
                     #define XSNPRINTF snprintf
                 #else
                     /* 4996 warning to use MS extensions e.g., _sprintf_s
@@ -915,7 +915,7 @@ typedef struct w64wrapper {
             !defined(NO_CRYPT_BENCHMARK) || defined(OPENSSL_EXTRA)
 
             #ifndef XATOI /* if custom XATOI is not already defined */
-                #include <stdlib.h>
+                #include <my_stdlib.h>
                 #define XATOI(s)          atoi((s))
             #endif
         #endif
@@ -957,7 +957,7 @@ typedef struct w64wrapper {
             #ifdef NO_GETENV
                 #define XGETENV(x) (NULL)
             #else
-                #include <stdlib.h>
+                #include <my_stdlib.h>
                 #define XGETENV getenv
             #endif
         #endif
@@ -1506,7 +1506,7 @@ typedef struct w64wrapper {
                 dispatch_semaphore_t cond;
             } COND_TYPE;
         #else
-            #include <pthread.h>
+            #include <my_stdlib.h>
             typedef struct COND_TYPE {
                 pthread_mutex_t mutex;
                 pthread_cond_t cond;

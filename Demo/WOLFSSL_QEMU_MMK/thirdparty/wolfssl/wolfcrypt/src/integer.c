@@ -53,12 +53,12 @@
     #include <wolfssl/wolfcrypt/port/nxp/ksdk_port.h>
 #endif
 #ifdef WOLFSSL_DEBUG_MATH
-    #include <stdio.h>
+    #include <my_stdio.h>
 #endif
 
 #ifdef SHOW_GEN
     #ifndef NO_STDIO_FILESYSTEM
-        #include <stdio.h>
+        #include <my_stdio.h>
     #endif
 #endif
 

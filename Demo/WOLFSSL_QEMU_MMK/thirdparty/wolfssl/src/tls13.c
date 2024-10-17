@@ -102,7 +102,7 @@
 #ifndef WOLFCRYPT_ONLY
 
 #ifdef HAVE_ERRNO_H
-    #include <errno.h>
+    #include <FreeRTOS_POSIX/errno.h>
 #endif
 
 #if defined(__MACH__) || defined(__FreeBSD__) || \

@@ -71,7 +71,7 @@
 #include <sys/types.h>
 #include <pwd.h>
 #include <grp.h>
-#include <errno.h>
+#include <FreeRTOS_POSIX/errno.h>
 #endif
 
 #if !defined(_WIN32) && !(defined(__OSX__) || defined(__APPLE__))

@@ -72,7 +72,7 @@
          */
         #define wc_mem_printf(...) printf(__VA_ARGS__)
     #else
-        #include <stdio.h>
+        #include <my_stdio.h>
         #define wc_mem_printf(...) fprintf(stderr, __VA_ARGS__)
     #endif
 #endif
@@ -439,7 +439,7 @@ static WC_INLINE int CleanupMemoryTracker(void)
 
 #ifdef HAVE_STACK_SIZE
 
-#include <errno.h>
+#include <FreeRTOS_POSIX/errno.h>
 #include <sched.h>
 #include <my_stdlib.h>
 

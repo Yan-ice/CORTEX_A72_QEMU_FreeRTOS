@@ -44,7 +44,7 @@
 #endif
 
 #ifdef DEBUG_IOTSAFE
-#include <stdio.h>
+#include <my_stdio.h>
 #endif
 
 static int wolfIoT_initialized = 0;

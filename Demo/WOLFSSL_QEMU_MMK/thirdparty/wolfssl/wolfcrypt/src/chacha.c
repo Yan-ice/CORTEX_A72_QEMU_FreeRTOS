@@ -88,7 +88,7 @@ Public domain.
 #include <wolfssl/wolfcrypt/cpuid.h>
 
 #ifdef CHACHA_AEAD_TEST
-    #include <stdio.h>
+    #include <my_stdio.h>
 #endif
 
 #ifdef USE_INTEL_CHACHA_SPEEDUP

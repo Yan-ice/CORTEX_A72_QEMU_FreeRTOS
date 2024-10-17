@@ -113,7 +113,7 @@ void* wolfSSH_GetIOWriteCtx(WOLFSSH* ssh)
         /* LWIP_SOCKET 1 in lwip/opt.h or in build */
         #include "lwip/sockets.h"
         #ifndef LWIP_PROVIDE_ERRNO
-            #include <errno.h>
+            #include <FreeRTOS_POSIX/errno.h>
             #define LWIP_PROVIDE_ERRNO 1
         #endif
     #elif defined(FREESCALE_MQX)
@@ -136,16 +136,16 @@ void* wolfSSH_GetIOWriteCtx(WOLFSSH* ssh)
     #elif defined(MICROCHIP_MPLAB_HARMONY)
         #include "tcpip/tcpip.h"
         #include "sys/errno.h"
-        #include <errno.h>
+        #include <FreeRTOS_POSIX/errno.h>
     #elif defined(WOLFSSL_NUCLEUS)
         #include "nucleus.h"
         #include "networking/nu_networking.h"
-        #include <errno.h>
+        #include <FreeRTOS_POSIX/errno.h>
     #elif defined(WOLFSSH_ZEPHYR)
         #include <zephyr/net/socket.h>
     #else
         #include <sys/types.h>
-        #include <errno.h>
+        #include <FreeRTOS_POSIX/errno.h>
         #ifndef EBSNET
             #include <unistd.h>
         #endif

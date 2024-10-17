@@ -6,6 +6,7 @@ MEMORY
 	/* Fake ROM area */
 	rom (rxa) : ORIGIN = 0x40400000, LENGTH = 512K
 	ram (wxa) : ORIGIN = 0x40480000, LENGTH = 512K
+	fs (wxa) : ORIGIN = 0x40600000, LENGTH = 2M
 }
 
 SECTIONS
@@ -136,4 +137,6 @@ SECTIONS
 		. += __stack_size;
 		_stack_top = .;
 	} >ram AT>ram
+
+	
 }

@@ -141,10 +141,10 @@
 #define STDC_HEADERS 1
 
 /* Define if the code was built from VCS. */
-#define VCS_CHECKOUT 1
+#define VCS_CHECKOUT 0
 
 /* VCS system */
-#define VCS_SYSTEM "git"
+#define VCS_SYSTEM "none"
 
 /* Define for Solaris 2.5.1 so the uint8_t typedef from <sys/synch.h>,
    <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the

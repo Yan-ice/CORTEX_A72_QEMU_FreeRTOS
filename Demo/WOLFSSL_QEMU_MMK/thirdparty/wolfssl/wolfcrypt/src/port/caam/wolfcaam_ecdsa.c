@@ -44,7 +44,7 @@
 #include <wolfssl/wolfcrypt/asn.h>
 
 #if defined(WOLFSSL_CAAM_DEBUG) || defined(WOLFSSL_CAAM_PRINT)
-#include <stdio.h>
+#include <my_stdio.h>
 #endif
 
 #ifndef WOLFSSL_HAVE_ECC_KEY_GET_PRIV

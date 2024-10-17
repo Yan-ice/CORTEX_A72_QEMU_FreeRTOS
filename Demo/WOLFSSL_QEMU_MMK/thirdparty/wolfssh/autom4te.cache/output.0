@@ -8104,7 +8104,7 @@ else
 /* end confdefs.h.  */
 #include <stdlib.h>
 #include <stdarg.h>
-#include <string.h>
+#include <my_stdutil.h>
 #include <float.h>
 
 int
@@ -8126,7 +8126,7 @@ if test $ac_cv_header_stdc = yes; then
   # SunOS 4.x string.h does not declare mem*, contrary to ANSI.
   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
-#include <string.h>
+#include <my_stdutil.h>
 
 _ACEOF
 if (eval "$ac_cpp conftest.$ac_ext") 2>&5 |

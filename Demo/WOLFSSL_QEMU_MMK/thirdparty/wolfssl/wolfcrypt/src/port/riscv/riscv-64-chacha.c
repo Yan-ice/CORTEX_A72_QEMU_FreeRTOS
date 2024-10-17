@@ -46,11 +46,11 @@
 #endif
 
 #ifdef CHACHA_AEAD_TEST
-    #include <stdio.h>
+    #include <my_stdio.h>
 #endif
 
 #ifdef CHACHA_TEST
-    #include <stdio.h>
+    #include <my_stdio.h>
 #endif
 
 /* Number of rounds */

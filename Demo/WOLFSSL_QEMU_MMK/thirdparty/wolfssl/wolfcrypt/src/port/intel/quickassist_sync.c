@@ -66,10 +66,10 @@
 #endif
 
 /* User space utils */
-#include <stdio.h>
+#include <my_stdio.h>
 #include <my_stdlib.h>
-#include <string.h>
-#include <errno.h>
+#include <my_stdutil.h>
+#include <FreeRTOS_POSIX/errno.h>
 
 #if 0
     /* Optional feature for partial QAT hashing support */
@@ -1375,9 +1375,9 @@ void wc_CryptoCb_CleanupIntelQa(int* id)
 /* -------------------------------------------------------------------------- */
 /* Memory allocator and deallocator                                           */
 /* -------------------------------------------------------------------------- */
-#include <stdio.h>
+#include <my_stdio.h>
 #include <my_stdlib.h>
-#include <string.h>
+#include <my_stdutil.h>
 
 /* use thread local for QAE variables (removing mutex requirement) */
 #ifdef USE_QAE_THREAD_LS

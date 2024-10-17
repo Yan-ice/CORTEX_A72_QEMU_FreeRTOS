@@ -57,7 +57,7 @@
     #include <hostLib.h>
     #include <sockLib.h>
     #include <arpa/inet.h>
-    #include <string.h>
+    #include <my_stdutil.h>
     #include <selectLib.h>
     #include <sys/types.h>
     #include <netinet/in.h>

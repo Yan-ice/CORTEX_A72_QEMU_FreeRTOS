@@ -25,14 +25,12 @@
  */
 
 /* FreeRTOS kernel includes. */
+
 #include <FreeRTOS.h>
 #include <task.h>
-#include <FreeRTOSConfig.h>
 
-#include "my_stdlib.h"
 #include "uart.h"
 #include "gic_v3.h"
-#include "aarch64.h"
 
 /* Run a simple demo just prints 'Blink' */
 #define DEMO_BLINKY               1
@@ -125,9 +123,12 @@ int main( void )
     uartinit();
     vSendString("uart init success.\n");
 
+    __asm__ volatile ("mrs %0, s3_1_c15_c3_0" : "=r"(ret));
+    vSendString("gic base CBAR:");
+    printHex(ret);
+
     #if defined( DEMO_BLINKY )
-        //ret = main_blinky();
-        ret = main_network();
+        ret = main_blinky();
     #else
     #error "Please add or select demo."
     #endif
@@ -135,17 +136,40 @@ int main( void )
     return ret;
 }
 
-#include "FreeRTOS_IP.h"
-static uint32_t ulSeed = 123456789; // timer stamp
 
-// 简单的线性同余伪随机数生成器 (LCG) 算法示例
-BaseType_t xApplicationGetRandomNumber( uint32_t *pulNumber )
+/*-----------------------------------------------------------*/
+
+void vApplicationGetTimerTaskMemory( 
+    StaticTask_t **ppxTimerTaskTCBBuffer,
+    StackType_t **ppxTimerTaskStackBuffer,
+    uint32_t *pulTimerTaskStackSize )
 {
-    // 线性同余伪随机数生成器公式
-    ulSeed = (ulSeed * 1103515245 + 12345) & 0x7fffffff;
-    *pulNumber = ulSeed;
+    // 提供定时器任务的 TCB 缓冲区
+    static StaticTask_t xTimerTaskTCB;
+    *ppxTimerTaskTCBBuffer = &xTimerTaskTCB;
 
-    return pdTRUE; // 始终返回成功
+    // 提供定时器任务的堆栈缓冲区
+    static StackType_t xTimerTaskStack[configTIMER_TASK_STACK_DEPTH];
+    *ppxTimerTaskStackBuffer = xTimerTaskStack;
+
+    // 定义定时器任务堆栈的大小
+    *pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
+}
+
+/*-----------------------------------------------------------*/
+
+/* 定义空闲任务所需的静态内存 */
+static StaticTask_t xIdleTaskTCB;
+static StackType_t uxIdleTaskStack[ configMINIMAL_STACK_SIZE ];
+
+void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer,
+                                    StackType_t **ppxIdleTaskStackBuffer,
+                                    configSTACK_DEPTH_TYPE *pulIdleTaskStackSize )
+{
+    /* 提供用于空闲任务的静态内存 */
+    *ppxIdleTaskTCBBuffer = &xIdleTaskTCB;
+    *ppxIdleTaskStackBuffer = uxIdleTaskStack;
+    *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
 }
 
 /*-----------------------------------------------------------*/

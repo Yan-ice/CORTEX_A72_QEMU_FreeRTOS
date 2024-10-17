@@ -104,7 +104,7 @@ block cipher mechanism that uses n-bit binary string parameter key with 128-bits
 #endif
 
 #ifdef DEBUG_AESNI
-    #include <stdio.h>
+    #include <my_stdio.h>
 #endif
 
 #ifdef _MSC_VER

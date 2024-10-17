@@ -135,9 +135,9 @@
     defined(CHACHA_AEAD_TEST) || defined(WOLFSSL_SESSION_EXPORT_DEBUG)
     #ifndef NO_STDIO_FILESYSTEM
         #ifdef FUSION_RTOS
-            #include <fclstdio.h>
+            #include <fclmy_stdio.h>
         #else
-            #include <stdio.h>
+            #include <my_stdio.h>
         #endif
     #endif
 #endif

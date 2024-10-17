@@ -48,7 +48,7 @@
 #include <wolfssl/wolfcrypt/port/Renesas/renesas-tsip-crypt.h>
 #include <wolfssl/wolfcrypt/port/Renesas/renesas_cmn.h>
 
-#include <stdio.h>
+#include <my_stdio.h>
 
 #define TSIP_SIGNING_DATA_PREFIX_SZ     64
 #define TSIP_SIGNING_DATA_PREFIX_BYTE   0x20
