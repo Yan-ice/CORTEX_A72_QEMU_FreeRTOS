@@ -1,4 +1,5 @@
 #include "trace_time.h"
+#include <stdio.h>
 
 uint64_t time_d[64];
 int trace_nest;

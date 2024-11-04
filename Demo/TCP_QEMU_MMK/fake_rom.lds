@@ -5,8 +5,7 @@ MEMORY
 {
 	/* Fake ROM area */
 	rom (rxa) : ORIGIN = 0x40400000, LENGTH = 512K
-	ram (wxa) : ORIGIN = 0x40480000, LENGTH = 512K
-	fs (wxa) : ORIGIN = 0x40600000, LENGTH = 2M
+	ram (wxa) : ORIGIN = 0x40480000, LENGTH = 20480K
 }
 
 SECTIONS
@@ -88,15 +87,17 @@ SECTIONS
 		*(.tdata .tdata.*)
 	} >rom AT>rom
 
+	PROVIDE( __tdata_source = LOADADDR(.tdata) );
+	PROVIDE( __tdata_source_end = LOADADDR(.tdata) + SIZEOF(.tdata) );
+	PROVIDE( __tdata_size = SIZEOF(.tdata) );
+
 	.tbss (NOLOAD) : {
 		*(.tbss .tbss.* .gnu.linkonce.tb.*)
 		*(.tcommon)
 		PROVIDE( __tbss_end = . );
 		PROVIDE( __tls_end = . );
 	} >rom AT>rom
-	PROVIDE( __tdata_source = LOADADDR(.tdata) );
-	PROVIDE( __tdata_source_end = LOADADDR(.tdata) + SIZEOF(.tdata) );
-	PROVIDE( __tdata_size = SIZEOF(.tdata) );
+	
 	PROVIDE( __tbss_offset = ADDR(.tbss) - ADDR(.tdata) );
 	PROVIDE( __tbss_start = ADDR(.tbss) );
 	PROVIDE( __tbss_size = SIZEOF(.tbss) );

@@ -36,8 +36,6 @@
  *	Destroying a FreeRTOS+FAT IO object.
  **/
 
-#include "my_stdlib.h"
-
 #include "ff_headers.h"
 
 #define FAT16_SECTOR_COUNT_4085             4085

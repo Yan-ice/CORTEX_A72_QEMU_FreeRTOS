@@ -263,10 +263,10 @@ _static ARPCacheRow_t xARPCache[ ipconfigARP_CACHE_ENTRIES ];
                 #if ( ipconfigHAS_DEBUG_PRINTF != 0 )
                     if( pxARPHeader->usOperation == ( uint16_t ) ipARP_REPLY )
                     {
-                        FreeRTOS_debug_printf( ( "ipARP_REPLY from %xip to %xip end-point %xip\n",
+                        dprintf( "ipARP_REPLY from %x ip to %x ip end-point %x ip\n",
                                                  ( unsigned ) FreeRTOS_ntohl( ulSenderProtocolAddress ),
                                                  ( unsigned ) FreeRTOS_ntohl( ulTargetProtocolAddress ),
-                                                 ( unsigned ) FreeRTOS_ntohl( ( pxTargetEndPoint != NULL ) ? pxTargetEndPoint->ipv4_settings.ulIPAddress : 0U ) ) );
+                                                 ( unsigned ) FreeRTOS_ntohl( ( pxTargetEndPoint != NULL ) ? pxTargetEndPoint->ipv4_settings.ulIPAddress : 0U ) );
                     }
                 #endif /* ( ipconfigHAS_DEBUG_PRINTF != 0 ) */
 
@@ -275,10 +275,10 @@ _static ARPCacheRow_t xARPCache[ ipconfigARP_CACHE_ENTRIES ];
                         ( ulSenderProtocolAddress != ulTargetProtocolAddress ) &&
                         ( pxTargetEndPoint != NULL ) )
                     {
-                        FreeRTOS_debug_printf( ( "ipARP_REQUEST from %xip to %xip end-point %xip\n",
+                        dprintf( "ipARP_REQUEST from %xip to %xip end-point %xip\n",
                                                  ( unsigned ) FreeRTOS_ntohl( ulSenderProtocolAddress ),
                                                  ( unsigned ) FreeRTOS_ntohl( ulTargetProtocolAddress ),
-                                                 ( unsigned ) ( FreeRTOS_ntohl( ( pxTargetEndPoint != NULL ) ? pxTargetEndPoint->ipv4_settings.ulIPAddress : 0U ) ) ) );
+                                                 ( unsigned ) ( FreeRTOS_ntohl( ( pxTargetEndPoint != NULL ) ? pxTargetEndPoint->ipv4_settings.ulIPAddress : 0U )) );
                     }
                 #endif /* ( ipconfigHAS_DEBUG_PRINTF != 0 ) */
 
@@ -287,6 +287,7 @@ _static ARPCacheRow_t xARPCache[ ipconfigARP_CACHE_ENTRIES ];
 
                 /* Don't do anything if the local IP address is zero because
                  * that means a DHCP request has not completed. */
+                //Yan_ice: this line seems false, so nothing happens when arp request get.
                 if( ( pxTargetEndPoint != NULL ) && ( pxTargetEndPoint->bits.bEndPointUp != pdFALSE_UNSIGNED ) )
                 {
                     switch( pxARPHeader->usOperation )

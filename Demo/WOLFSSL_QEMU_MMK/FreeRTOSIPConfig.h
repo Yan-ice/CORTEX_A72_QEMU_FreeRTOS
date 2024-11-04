@@ -40,9 +40,11 @@
     #define xPortGetFreeHeapSize()                  0
 #endif
 
-#define ipconfigIP_ADDRESS0              ( 192UL << 24UL | 168UL << 16UL | 0UL << 8UL | 100UL ) // 示例 IP 地址
-#define ipconfigNET_MASK0                ( 255UL << 24UL | 255UL << 16UL | 255UL << 8UL | 0UL )   // 子网掩码
-#define ipconfigGatewayAddress0          ( 192UL << 24UL | 168UL << 16UL | 0UL << 8UL | 1UL )   // 默认网关
+
+#define ipconfigHAS_PRINTF				1
+#define ipconfigHAS_DEBUG_PRINTF        0
+
+#define dprintf if(ipconfigHAS_DEBUG_PRINTF) printf
 
 /* Define the byte order of the target MCU (the MCU FreeRTOS+TCP is executing
  * on).  Valid options are pdFREERTOS_BIG_ENDIAN and pdFREERTOS_LITTLE_ENDIAN. */
@@ -126,6 +128,7 @@
  * FreeRTOS_IPInit() function call. */
 #define ipconfigUSE_DHCP                               0
 #define ipconfigUSE_STATIC_IP                          1
+#define ipconfigUSE_RA                                 0
 
 /* When ipconfigUSE_DHCP is set to 1, DHCP requests will be sent out at
  * increasing time intervals until either a reply is received from a DHCP server
@@ -205,7 +208,7 @@
 #define ipconfigUSE_TCP                                ( 1 )
 
 /* USE_WIN: Let TCP use windowing mechanism. */
-#define ipconfigUSE_TCP_WIN                            ( 1 )
+#define ipconfigUSE_TCP_WIN                            ( 0 )
 
 /* The MTU is the maximum number of bytes the payload of a network frame can
  * contain. Setting this to a number lower than that of the network you are
@@ -216,7 +219,7 @@
 /* Set ipconfigUSE_DNS to 1 to include a basic DNS client/resolver.  DNS is used
  * through the FreeRTOS_gethostbyname() API function. */
 #define ipconfigUSE_DNS                                0
-#define ipconfigIPv4_BACKWARD_COMPATIBLE                1
+#define ipconfigIPv4_BACKWARD_COMPATIBLE                0
 #define ipconfigUSE_IPv6                                0
 #define ipconfigUSE_IPv4                                1
 
@@ -285,13 +288,9 @@
 
 #define portINLINE                          __inline
 
-#define ipconfigUSE_CUSTOM_TCP_SEQUENCENUMBER   1
+#define ipconfigUSE_CUSTOM_TCP_SEQUENCENUMBER   0
 
-uint32_t ulApplicationGetNextSequenceNumber(
-    uint32_t ulSourceAddress,
-    uint16_t usSourcePort,
-    uint32_t ulDestinationAddress,
-    uint16_t usDestinationPort
-);
+/* NEVER let it to be 1, the code no longer support it. */
+#define ipconfigUSE_LINKED_RX_MESSAGES 0
 
 #endif /* FREERTOS_IP_CONFIG_H */

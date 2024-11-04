@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "FreeRTOS",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/all_includes"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/aarch64-linux-gnu-gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}

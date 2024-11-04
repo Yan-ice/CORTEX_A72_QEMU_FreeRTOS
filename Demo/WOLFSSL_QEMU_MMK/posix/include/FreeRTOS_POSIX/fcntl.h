@@ -88,14 +88,14 @@ void fs_init(void);
 #include "ff_headers.h"
 #include "ff_stdio.h"
 
-typedef FF_FILE* FILE;
+//typedef FF_FILE* FILE;
 
-#define fopen ff_fopen
-#define fclose ff_fclose
-#define fflush ff_fflush
-#define fseek ff_fseek
-#define fread ff_fread
-#define fwrite ff_fwrite
+// #define fopen ff_fopen
+// #define fclose ff_fclose
+// #define fflush ff_fflush
+// #define fseek ff_fseek
+// #define fread ff_fread
+// #define fwrite ff_fwrite
 
 //FILE fopen() __attribute__((alias("ff_fopen")));
 

@@ -8,7 +8,7 @@
 #define RAMDISK_NUM_SECTORS     2048   // 扇区数量
 #define RAMDISK_NAME            "/ram" // RAM 磁盘挂载点名称
 
-extern void printf(char* x, ...);
+extern int printf(const char* x, ...);
 
 typedef struct _IO_interface {
     size_t (*vwrite)(void*, const void*, size_t);

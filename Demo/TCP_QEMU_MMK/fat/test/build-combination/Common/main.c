@@ -113,7 +113,7 @@ int main( void )
  */
     void vApplicationGetTimerTaskMemory( StaticTask_t ** ppxTimerTaskTCBBuffer,
                                          StackType_t ** ppxTimerTaskStackBuffer,
-                                         uint32_t * pulTimerTaskStackSize )
+                                         configSTACK_DEPTH_TYPE * puxTimerTaskStackSize )
     {
         /* Provide a stub for this function. */
         ( void ) ppxTimerTaskTCBBuffer;

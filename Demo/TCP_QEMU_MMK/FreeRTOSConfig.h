@@ -73,7 +73,7 @@
 #define configTICK_RATE_HZ				( ( TickType_t ) 100 )
 #define configMAX_PRIORITIES			( 7 )
 #define configMINIMAL_STACK_SIZE		( ( unsigned short ) 512 )
-#define configTOTAL_HEAP_SIZE			( ( size_t ) 64500 )
+#define configTOTAL_HEAP_SIZE			( ( size_t ) 0x1000000 )
 #define configMAX_TASK_NAME_LEN			( 16 )
 #define configUSE_16_BIT_TICKS			0
 #define configIDLE_SHOULD_YIELD			0
@@ -108,7 +108,6 @@ void vConfigureTickInterrupt( void );
 
 void vClearTickInterrupt( void );
 #define configCLEAR_TICK_INTERRUPT() vClearTickInterrupt();
-
 
 void vRegisterIRQHandler( uint32_t ulID, uintptr_t pxHandlerFunction, void *pvContext );
 void vApplicationIRQHandler( uint32_t ulICCIAR );

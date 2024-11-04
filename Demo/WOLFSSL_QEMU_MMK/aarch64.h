@@ -122,6 +122,14 @@ w_cntv_tval_el0(uint64_t x)
   asm volatile("msr cntv_tval_el0, %0" : : "r" (x) );
 }
 
+static inline uint64_t
+cpu_time()
+{
+  uint64_t x;
+  asm volatile("mrs %0, cntvct_el0" : "=r" (x) );
+  return x;
+}
+
 //get the conunter
 static inline uint64_t
 r_cntvct_el0()
@@ -206,6 +214,7 @@ flush_tlb()
   asm volatile("dsb ish");
   isb();
 }
+
 
 #endif
 

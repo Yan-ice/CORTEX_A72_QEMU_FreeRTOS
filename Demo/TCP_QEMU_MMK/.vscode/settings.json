@@ -45,6 +45,10 @@
         "settings.h": "c",
         "freertos_posix_portable.h": "c",
         "semaphore.h": "c",
-        "sched.h": "c"
+        "sched.h": "c",
+        "cpu.h": "c",
+        "rand.h": "c",
+        "string_view": "c",
+        "initializer_list": "c"
     }
 }

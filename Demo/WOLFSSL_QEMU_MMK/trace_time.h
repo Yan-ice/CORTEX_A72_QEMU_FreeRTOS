@@ -12,22 +12,22 @@ int endTimer(int timer_id);
 #define traceRETURN_xQueueGenericCreate( xReturn ) \
     endTimer(1)
 
-#define traceENTER_xQueueGenericSend( xQueue, pvItemToQueue, xTicksToWait, xCopyPosition ) \
+//#define traceENTER_xQueueGenericSend( xQueue, pvItemToQueue, xTicksToWait, xCopyPosition ) \
     startTimer(2, "xQueueGenericSend")
 
-#define traceRETURN_xQueueGenericSend( xReturn ) \
+//#define traceRETURN_xQueueGenericSend( xReturn ) \
     endTimer(2)
 
-#define traceENTER_xQueueReceive( xQueue, pvBuffer, xTicksToWait ) \
+//#define traceENTER_xQueueReceive( xQueue, pvBuffer, xTicksToWait ) \
     startTimer(3, "xQueueGenericReceive")
 
-#define traceRETURN_xQueueReceive( xReturn ) \
+//#define traceRETURN_xQueueReceive( xReturn ) \
     endTimer(3)
 
-#define traceENTER_vTaskSwitchContext() \
-    startTimer(4, "vTaskSwitchContext")
+//#define traceENTER_vTaskSwitchContext() \
+//    startTimer(4, "vTaskSwitchContext")
 
-#define traceRETURN_vTaskSwitchContext() \
-    endTimer(4)
+//#define traceRETURN_vTaskSwitchContext() \
+//    endTimer(4)
 
 #endif

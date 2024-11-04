@@ -403,6 +403,7 @@
     void callFileEvents( const char * apPath,
                          eFileAction_t aAction );
 
+
     #ifdef __cplusplus
 }         /* extern "C" */
     #endif

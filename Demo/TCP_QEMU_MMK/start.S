@@ -41,7 +41,7 @@ _start:
 	B.NE secondary
 
 	// Primary hart
-	ADR x28, _stack_top
+	LDR x28, =_stack_top
 	MOV sp, x28
 	
 	B down_el1
@@ -74,6 +74,15 @@ down_el1:
 	MOV x3, MAP_IDENTICAL
 	MOV x7, NKAPI_ALLOC
 
+	//mmk area
+	MOV x0, 0
+	LDR x1, =0x40000
+	LDR x2, =0x40400
+	MOV x4, MAP_PERM_R | MAP_PERM_W | MAP_PERM_X
+	SUB x2, x2, x1
+	MOV x28, -0x1000
+	BLR x28
+
 	//rom area
 	MOV x0, 0
 	LDR x1, =0x40400
@@ -105,6 +114,15 @@ down_el1:
 	MOV x0, 0
 	LDR x1, =0x09000
 	LDR x2, =0x09001
+	MOV x4, MAP_PERM_R | MAP_PERM_W
+	SUB x2, x2, x1
+	MOV x28, -0x1000
+	BLR x28
+
+	//mmio area
+	MOV x0, 0
+	LDR x1, =0x0a000
+	LDR x2, =0x0a010
 	MOV x4, MAP_PERM_R | MAP_PERM_W
 	SUB x2, x2, x1
 	MOV x28, -0x1000
@@ -161,8 +179,8 @@ while2_end:
 //////////////////////////////////
 // Clear bss section
 
-	ADR x0, _bss
-	ADR x1, _ebss
+	LDR x0, =_bss
+	LDR x1, =_ebss
 
 	CMP x0, x1
 	B.GE while3_end
@@ -190,6 +208,21 @@ while3_end:
 //	MSR cntv_tval_el0, x28
 
 //////////////////////////////////
+
+
+/////////////////////////////////
+// modify CPACR_EL1 to allow floating point 
+
+	MRS x0, CPACR_EL1  // 读取 CPACR_EL1
+	ORR x0, x0, #0x300000  // 设置 FPEN 位为 0b11，允许 EL0 和 EL1 访问浮点和 SIMD
+	MSR CPACR_EL1, x0  // 写回 CPACR_EL1
+
+	MOV x9, #0x40000
+	str		x9, [x9, 0]
+	ldr     q0, [x9, 0]
+
+//////////////////////////////////
+
 
 	// argc, argv, envp is 0
 	MOV  x0, #0

@@ -231,8 +231,6 @@ static void prvIPTask( void * pvParameters )
 
     prvIPTask_Initialise();
 
-    FreeRTOS_debug_printf( ( "prvIPTask started\n" ) );
-
     /* Loop, processing IP events. */
     while( ipFOREVER() == pdTRUE )
     {
@@ -298,6 +296,7 @@ static void prvProcessIPEventsAndTimers( void )
             /* The network hardware driver has received a new packet.  A
              * pointer to the received buffer is located in the pvData member
              * of the received event structure. */
+            dprintf("Received IP task event: Rx\n");
             prvHandleEthernetPacket( ( NetworkBufferDescriptor_t * ) xReceivedEvent.pvData );
             break;
 
@@ -306,22 +305,23 @@ static void prvProcessIPEventsAndTimers( void )
             /* Send a network packet. The ownership will  be transferred to
              * the driver, which will release it after delivery. */
             prvForwardTxPacket( ( ( NetworkBufferDescriptor_t * ) xReceivedEvent.pvData ), pdTRUE );
+            dprintf("Received IP task event: Tx\n");
             break;
 
         case eARPTimerEvent:
             /* The ARP timer has expired, process the ARP cache. */
             #if ( ipconfigUSE_IPv4 != 0 )
-                vARPAgeCache();
+                vARPAgeCache(); //clean ARP cache.
             #endif /* ( ipconfigUSE_IPv4 != 0 ) */
 
             #if ( ipconfigUSE_IPv6 != 0 )
                 vNDAgeCache();
             #endif /* ( ipconfigUSE_IPv6 != 0 ) */
-
+            dprintf("Received IP task event: ARP timer\n");
             break;
 
         case eSocketBindEvent:
-
+            dprintf("Received IP task event: Socket\n");
             /* FreeRTOS_bind (a user API) wants the IP-task to bind a socket
              * to a port. The port number is communicated in the socket field
              * usLocalPort. vSocketBind() will actually bind the socket and the
@@ -368,7 +368,7 @@ static void prvProcessIPEventsAndTimers( void )
             break;
 
         case eSocketCloseEvent:
-
+            dprintf("Received IP task event: SocketClose\n");
             /* The user API FreeRTOS_closesocket() has sent a message to the
              * IP-task to actually close a socket. This is handled in
              * vSocketClose().  As the socket gets closed, there is no way to
@@ -377,7 +377,7 @@ static void prvProcessIPEventsAndTimers( void )
             break;
 
         case eStackTxEvent:
-
+            dprintf("Received IP task event: StackTx\n");
             /* The network stack has generated a packet to send.  A
              * pointer to the generated buffer is located in the pvData
              * member of the received event structure. */
@@ -385,6 +385,7 @@ static void prvProcessIPEventsAndTimers( void )
             break;
 
         case eDHCPEvent:
+            dprintf("Received IP task event: DHCP\n");
             prvCallDHCP_RA_Handler( ( ( NetworkEndPoint_t * ) xReceivedEvent.pvData ) );
             break;
 
@@ -427,7 +428,7 @@ static void prvProcessIPEventsAndTimers( void )
             break;
 
         case eTCPAcceptEvent:
-
+            dprintf("Received IP task event: TCP accept\n");
             /* The API FreeRTOS_accept() was called, the IP-task will now
              * check if the listening socket (communicated in pvData) actually
              * received a new connection. */
@@ -443,7 +444,7 @@ static void prvProcessIPEventsAndTimers( void )
             break;
 
         case eTCPNetStat:
-
+            dprintf("Received IP task event: TCP netstat\n");
             /* FreeRTOS_netstat() was called to have the IP-task print an
              * overview of all sockets and their connections */
             #if ( ( ipconfigUSE_TCP == 1 ) && ( ipconfigHAS_PRINTF == 1 ) )
@@ -631,6 +632,7 @@ TaskHandle_t FreeRTOS_GetIPTaskHandle( void )
  */
 void vIPNetworkUpCalls( struct xNetworkEndPoint * pxEndPoint )
 {
+    printf("NetworkUpCalls.\n");
     pxEndPoint->bits.bEndPointUp = pdTRUE_UNSIGNED;
 
     #if ( ipconfigUSE_NETWORK_EVENT_HOOK == 1 )
@@ -987,6 +989,7 @@ BaseType_t FreeRTOS_IPInit_Multi( void )
             /* Create the task that processes Ethernet and stack events. */
             #if ( configSUPPORT_STATIC_ALLOCATION == 1 )
             {
+                printf("prv IP task init: static\n");
                 static StaticTask_t xIPTaskBuffer;
                 static StackType_t xIPTaskStack[ ipconfigIP_TASK_STACK_SIZE_WORDS ];
                 xIPTaskHandle = xTaskCreateStatic( prvIPTask,
@@ -1004,6 +1007,7 @@ BaseType_t FreeRTOS_IPInit_Multi( void )
             }
             #else /* if ( configSUPPORT_STATIC_ALLOCATION == 1 ) */
             {
+                printf("prv IP task init: dynamic\n");
                 xReturn = xTaskCreate( prvIPTask,
                                        "IP-task",
                                        ipconfigIP_TASK_STACK_SIZE_WORDS,
@@ -1425,7 +1429,7 @@ BaseType_t xSendEventStructToIPTask( const IPStackEvent_t * pxEvent,
             if( xReturn == pdFAIL )
             {
                 /* A message should have been sent to the IP task, but wasn't. */
-                FreeRTOS_debug_printf( ( "xSendEventStructToIPTask: CAN NOT ADD %d\n", pxEvent->eEventType ) );
+                FreeRTOS_debug_printf( ( "xSendEventStructToIPTask: CAN NOT ADD %d\n", (int)pxEvent->eEventType ) );
                 iptraceSTACK_TX_EVENT_LOST( pxEvent->eEventType );
             }
         }
@@ -1554,6 +1558,7 @@ static void prvProcessEthernetPacket( NetworkBufferDescriptor_t * const pxNetwor
 
         if( ( pxNetworkBuffer->pxInterface == NULL ) || ( pxNetworkBuffer->pxEndPoint == NULL ) )
         {
+            printf("Please use FreeRTOS_FillEndPoint() \n");
             break;
         }
 

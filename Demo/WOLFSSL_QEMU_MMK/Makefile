@@ -1,17 +1,19 @@
 WORK_DIR	= $(shell pwd)
 BUILD_DIR       = $(WORK_DIR)/build
 
-RTOS_SOURCE_DIR = /home/yanice/Desktop/FreeRTOS/FreeRTOS/Source
-RTOS_PLUS_SOURCE_DIR = /home/yanice/Desktop/FreeRTOS/FreeRTOS-Plus/Source
+RTOS_SOURCE_DIR = /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/FreeRTOS/FreeRTOS/Source
+RTOS_PLUS_SOURCE_DIR = /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/FreeRTOS/FreeRTOS-Plus/Source
 
 TCP_SOURCE_DIR = $(RTOS_PLUS_SOURCE_DIR)/FreeRTOS-Plus-TCP
 DEMO_SOURCE_DIR = $(abspath ../Common)
 PORT_SOURCE_DIR = $(abspath ../../Port/GCC/ARM_AARCH64_QEMU)
 
-CROSS   := aarch64-linux-gnu-
+CROSS   := /home/yanice/Desktop/CORTEX_A72_QEMU_FreeRTOS/gcc-arm-10.3-2021.07-x86_64-aarch64-none-elf/bin/aarch64-none-elf-
 CC      = $(CROSS)gcc
 OBJCOPY = $(CROSS)objcopy
 ARCH    = $(CROSS)ar
+
+VIRTIO_NET_ADDR = 0x20000
 
 ########################################################
 ###
@@ -27,7 +29,7 @@ INCLUDES := $(WORK_DIR)
 SRCS := $(wildcard $(WORK_DIR)/*.c)
 ASMS := start.S vector.S
 LIBS := 
-DEFINES := -DVIRTIO_NET_ADDR=$(VIRTIO_NET_ADDR)
+DEFINES := VIRTIO_NET_ADDR=$(VIRTIO_NET_ADDR)
 
 ###########################
 # user libs.
@@ -35,15 +37,27 @@ DEFINES := -DVIRTIO_NET_ADDR=$(VIRTIO_NET_ADDR)
 INCLUDES += $(WORK_DIR)/libmmk/os/include
 LIBS +=	$(WORK_DIR)/libmmk/build/libmmk_s.a
 
-INCLUDES += $(WORK_DIR)/my_stdlib/include
-SRCS +=	$(wildcard my_stdlib/src/*.c)
+INCLUDES += $(WORK_DIR)/my_util/include
+SRCS +=	$(wildcard my_util/src/*.c)
 
-INCLUDES += ./newlib/include_sys
-# LIBS +=	-L$(WORK_DIR)/newlib/lib -lc -lm
+INCLUDES += $(WORK_DIR)/posix/include $(WORK_DIR)/posix/internal_include # $(WORK_DIR)/posix/include/FreeRTOS_POSIX
 
-INCLUDES += $(WORK_DIR)/posix/include $(WORK_DIR)/posix/internal_include $(WORK_DIR)/posix/include/FreeRTOS_POSIX
+INCLUDES += $(WORK_DIR)/include_sys
+# copy from /usr/lib/gcc-cross/aarch64-linux-gnu/9
 
 SRCS +=	$(wildcard posix/src/*.c)
+
+###########################
+# picolibc.
+#
+INCLUDES += $(WORK_DIR)/piconewlib/include
+LIBS += -L$(WORK_DIR)/piconewlib/lib -lg -lc -lm -lgcc
+
+###########################
+# libvirtio.
+#
+INCLUDES += $(WORK_DIR)/libvirtio
+SRCS += $(wildcard $(WORK_DIR)/libvirtio/*.c)
 
 ###########################
 # RTOS basic files.
@@ -82,20 +96,6 @@ INCLUDES += $(PORT_SOURCE_DIR) \
 
 ASMS +=	$(PORT_SOURCE_DIR)/portASM.S
 
-###########################
-# WolfSSH lib files.
-#
-#LIBS += -L$(WORK_DIR)/libwolfssh/lib -lwolfssh
-
-#INCLUDES += $(WORK_DIR)/libwolfssh/include
-
-###########################
-# WolfSSL lib files.
-#
-LIBS += -L$(WORK_DIR)/libwolfssl/lib -lwolfssl
-
-INCLUDES += $(WORK_DIR)/libwolfssl/include
-
 ##########################
 # RTOS-Plus TCP files.
 #
@@ -103,9 +103,7 @@ SRCS +=	$(wildcard $(TCP_SOURCE_DIR)/source/*.c)
 INCLUDES += $(TCP_SOURCE_DIR)/source/include
 
 _TCP_PORTABLE := $(TCP_SOURCE_DIR)/source/portable
-SRCS +=	$(_TCP_PORTABLE)/BufferManagement/BufferAllocation_2.c \
-	$(_TCP_PORTABLE)/NetworkInterface/MPS2_AN385/NetworkInterface.c \
-	$(_TCP_PORTABLE)/NetworkInterface/MPS2_AN385/ether_lan9118/smsc9220_eth_drv.c
+SRCS +=	$(_TCP_PORTABLE)/BufferManagement/BufferAllocation_2.c 
 
 INCLUDES += $(_TCP_PORTABLE)/NetworkInterface/MPS2_AN385/ether_lan9118 \
 		$(_TCP_PORTABLE)/Compiler/GCC
@@ -126,6 +124,7 @@ INCLUDES += $(_FAT_PORTABLE)/common
 
 
 INCLUDE_FLAG = $(addprefix -I, $(INCLUDES))
+DEFINE_FLAG = $(addprefix -D, $(DEFINES))
 
 USE_MMK=0
 DEBUG=1
@@ -135,39 +134,41 @@ TARGET = RTOSDemo
 GCC_VERSION = $(shell $(CC) --version | grep ^$(CC) | sed 's/^.* //g' | awk -F. '{ printf("%d%02d%02d"), $$1, $$2, $$3 }')
 GCC_VERSION_NEED_ZICSR = "110100"
 
-ifeq ($(DEBUG), 1)
-    CFLAGS += -O0 -Og -ggdb3
-else
-    CFLAGS += -O2
-endif
-
 ifeq ($(USE_MMK), 1)
     MMK_FILE = MMK_aarch64.bin
 else
     MMK_FILE = fw_jump.elf
 endif
 
-ifeq ($(PICOLIBC), 1)
-    CFLAGS += --specs=picolibc.specs -DPICOLIBC_INTEGER_PRINTF_SCANF
-   LDFLAGS += --specs=picolibc.specs -DPICOLIBC_INTEGER_PRINTF_SCANF
-endif
-
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o) $(ASMS:%.S=$(BUILD_DIR)/%.o)
 DEPS = $(SRCS:%.c=$(BUILD_DIR)/%.d) $(ASMS:%.S=$(BUILD_DIR)/%.d)
 
 CFLAGS = \
-	-fno-builtin -fno-builtin-function -nostdinc \
+	-fno-builtin -fno-builtin-functions -nostdlib -nostdinc -fno-inline \
 	-ffunction-sections -fdata-sections -fno-stack-protector \
-	-fmessage-length=0 -fno-common -mgeneral-regs-only -nostdlib\
+	-fno-common -mgeneral-regs-only -nostdlib\
 	-D USE_MMK=$(USE_MMK) \
 	$(INCLUDE_FLAG)
 
-LDFLAGS = -nostartfiles -Tfake_rom.lds -fno-builtin -nostdlib\
+LDFLAGS = -nostartfiles -Tfake_rom.lds -fno-builtin -nostdlib -nostdinc -fno-inline\
 	-Xlinker --gc-sections -fno-common -mgeneral-regs-only -fno-stack-protector\
 	-Xlinker --defsym=__stack_size=1000 \
 	-Xlinker -Map=$(BUILD_DIR)/$(TARGET).map \
 	-D USE_MMK=$(USE_MMK) \
 	$(LIBS)
+
+ifeq ($(DEBUG), 1)
+    CFLAGS += -O0 -Og -ggdb3
+else
+    CFLAGS += -O2
+endif
+
+ifeq ($(PICOLIBC), 1)
+    CFLAGS += --specs=picolibc.specs -DPICOLIBC_INTEGER_PRINTF_SCANF -D__SSP_FORTIFY_LEVEL=0
+   LDFLAGS += --specs=picolibc.specs -DPICOLIBC_INTEGER_PRINTF_SCANF -D__SSP_FORTIFY_LEVEL=0
+endif
+
+
 
 build: $(BUILD_DIR)/$(TARGET).bin
 
@@ -203,15 +204,27 @@ test: $(BUILD_DIR)/$(TARGET).bin
 		-machine virt -cpu cortex-a72 \
 		-device loader,file=$(BUILD_DIR)/$(TARGET).bin,addr=0x40400000 \
 		-kernel $(MMK_FILE) \
-		-netdev user,id=net0 \
-		-device virtio-net,netdev=net0
+		-netdev user,net=192.168.31.0/24,host=192.168.31.1,hostname=qemu,id=net0,hostfwd=tcp::2333-:2333\
+		-device virtio-net-device,netdev=net0
 
 debug: $(BUILD_DIR)/$(TARGET).bin
 	qemu-system-aarch64 -nographic \
 		-machine virt -cpu cortex-a72 \
 		-device loader,file=$(BUILD_DIR)/$(TARGET).bin,addr=0x40400000 \
 		-kernel $(MMK_FILE) \
+		-netdev user,net=192.168.31.0/24,host=192.168.31.1,hostname=qemu,id=net0,hostfwd=tcp::2333-:2333\
+		-device virtio-net-device,netdev=net0 \
 		-s -S
+
+# get_dtb:
+# 	qemu-system-aarch64 -nographic \
+# 		-machine virt,dumpdtb=virt.dtb -cpu cortex-a72 \
+# 		-device loader,file=$(BUILD_DIR)/$(TARGET).bin,addr=0x40400000 \
+# 		-kernel $(MMK_FILE) \
+# 		-netdev user,net=192.168.31.15,host=192.168.31.1,hostname=qemu,id=net0,hostfwd=tcp::2333-:2333 \
+# 		-device virtio-net-pci,netdev=net0
+# 	dtc -I dtb -O dts virt.dtb >virt.dts
+
 gdb:
 	gdb-multiarch $(BUILD_DIR)/$(TARGET).elf \
 		-ex 'target remote localhost:1234'

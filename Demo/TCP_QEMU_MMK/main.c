@@ -32,6 +32,9 @@
 #include "uart.h"
 #include "gic_v3.h"
 
+#include "stdio.h"
+#include "FreeRTOS_IP.h"
+
 /* Run a simple demo just prints 'Blink' */
 #define DEMO_BLINKY               1
 
@@ -92,7 +95,17 @@ int FreeRTOS_SYNC_Handler (uint64_t* ctx) {
     vSendStringISR("SYNC interrupt handled.\n");
     //printHex((uint64_t)ctx); //sp
     //printHex(ctx[31]); //sp_el0
-    //printHex(ctx[32]); //sepc
+    printf("sepc=%lx\n",ctx[32]);
+    
+    unsigned long __reg; 
+    __asm__ volatile("mrs %0, ESR_EL1 " : "=r" (__reg) ); 
+    unsigned int scause = __reg>>26;
+    printf("ESR_EL1[31:26](scause)=%lx\n",scause);
+    
+    //if(scause == 0x25){ // data abort error
+    //    return 0;
+    //}
+
     while(1);
     //portEXIT_CRITICAL();
     return 0;
@@ -123,27 +136,43 @@ int main( void )
     uartinit();
     vSendString("uart init success.\n");
 
-    __asm__ volatile ("mrs %0, s3_1_c15_c3_0" : "=r"(ret));
-    vSendString("gic base CBAR:");
-    printHex(ret);
+    setup_stdio();
+    printf("stdio setup success.\n");
 
-    #if defined( DEMO_BLINKY )
-        ret = main_blinky();
-    #else
-    #error "Please add or select demo."
-    #endif
-
+    ret = main_tcp();
     return ret;
 }
 
+void vApplicationIPNetworkEventHook_Multi( eIPCallbackEvent_t eNetworkEvent,
+                                                   struct xNetworkEndPoint * pxEndPoint ) {
+    printf("[IP Network Event Hook.]\n");
+}
 
+BaseType_t xApplicationGetRandomNumber( uint32_t * pulNumber ) {
+    *pulNumber = cpu_time();
+    //TODO: a proper random number.
+
+}
+
+int seq = 0;
+uint32_t ulApplicationGetNextSequenceNumber(
+    uint32_t ulSourceAddress,
+    uint16_t usSourcePort,
+    uint32_t ulDestinationAddress,
+    uint16_t usDestinationPort
+){
+    seq++;
+    return seq;
+    //TODO: a proper seq number generator.
+}
 /*-----------------------------------------------------------*/
 
 void vApplicationGetTimerTaskMemory( 
     StaticTask_t **ppxTimerTaskTCBBuffer,
     StackType_t **ppxTimerTaskStackBuffer,
-    uint32_t *pulTimerTaskStackSize )
+    configSTACK_DEPTH_TYPE *pulTimerTaskStackSize )
 {
+    vSendStringISR("app get timer task mem\n");
     // 提供定时器任务的 TCB 缓冲区
     static StaticTask_t xTimerTaskTCB;
     *ppxTimerTaskTCBBuffer = &xTimerTaskTCB;
@@ -166,6 +195,7 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer,
                                     StackType_t **ppxIdleTaskStackBuffer,
                                     configSTACK_DEPTH_TYPE *pulIdleTaskStackSize )
 {
+    vSendStringISR("app get idle task mem\n");
     /* 提供用于空闲任务的静态内存 */
     *ppxIdleTaskTCBBuffer = &xIdleTaskTCB;
     *ppxIdleTaskStackBuffer = uxIdleTaskStack;
@@ -268,8 +298,8 @@ void vRegisterIRQHandler( uint32_t ulID,
 
 void vApplicationIRQHandler( uint32_t ulICCIAR )
 {
-    //printHexISR(ulICCIAR);
-    //vSendStringISR("[vApplicationIRQHandler]\n");
+    printHexISR(ulICCIAR);
+    vSendStringISR("[vApplicationIRQHandler]\n");
 
     return;
 }

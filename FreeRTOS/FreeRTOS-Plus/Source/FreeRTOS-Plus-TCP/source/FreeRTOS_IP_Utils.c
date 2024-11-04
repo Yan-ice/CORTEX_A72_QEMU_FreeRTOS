@@ -963,6 +963,7 @@ void prvProcessNetworkDownEvent( struct xNetworkInterface * pxInterface )
     }
     else
     {
+        printf("Network interface initialise NOT passed!\n");
         /* At least one interface is down. */
         vSetAllNetworksUp( pdFALSE );
 

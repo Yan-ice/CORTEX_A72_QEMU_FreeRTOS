@@ -24,7 +24,6 @@
  *
  */
 
-#include "my_stdlib.h"
 
 /* Scheduler include files. */
 #include "FreeRTOS.h"
